@@ -6,7 +6,19 @@
 <title>Luke's Sage Work Experience Passport 🌿</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap');
-
+  .week-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+    a.week-day { display: block; background: var(--dark); border: 1px solid var(--border); border-radius: 14px; padding: 14px 12px; text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
+    a.week-day:hover { border-color: var(--green); transform: translateY(-2px); }
+    .week-day .day-pill { display: inline-block; margin-bottom: 12px; }
+    .week-list { list-style: none; }
+    .week-list li { display: flex; gap: 8px; align-items: baseline; font-size: 12px; color: #ddd; line-height: 1.4; padding: 7px 0; border-top: 1px solid rgba(255,255,255,0.06); }
+    .week-list li:first-child { border-top: none; padding-top: 0; }
+    .week-list .wt { flex: 0 0 auto; min-width: 42px; color: var(--green); font-family: 'Space Mono', monospace; font-size: 11px; white-space: nowrap; }
+    .week-list li.lunch { color: var(--muted); }
+    .week-list li.lunch .wt { color: var(--muted); }
+    @media (max-width: 760px) { .week-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 460px) { .week-grid { grid-template-columns: 1fr; } }
+  
   :root {
     --green: #00FF6B;
     --green-mid: #00A159;
@@ -928,6 +940,7 @@
 <!-- NAV -->
 <nav class="nav no-print" id="main-nav">
   <a href="#intro">intro</a>
+    <a href="#week">week</a>
   <a href="#monday">mon</a>
   <a href="#tuesday">tue</a>
   <a href="#wednesday">wed</a>
@@ -989,7 +1002,73 @@
   </div>
 </section>
 
-<!-- ===== MONDAY ===== -->
+<!-- ===== WEEK AT A GLANCE ===== -->
+  <section class="section" id="week">
+      <div class="section-header reveal">
+            <div class="day-pill">THE WHOLE WEEK</div>
+            <h2 class="section-title">WEEK AT <span>A GLANCE</span></h2>
+      </div>
+  
+    <div class="card reveal" style="border-color:var(--green-dark);">
+        <div class="card-label">🗓️ 29 JUNE – 3 JULY · 9:30AM TO 4PM</div>
+        <p style="margin-bottom:4px;">Your whole week in one view. Tap any day to jump to the full detail — rooms, times and who you're meeting.</p>
+        <div class="week-grid" style="margin-top:18px;">
+        
+              <a class="week-day" href="#monday">
+                      <div class="day-pill">MON 29</div>
+                      <ul class="week-list">
+                                <li><span class="wt">9:30</span> 👋 Tour &amp; intro</li>
+                                <li class="lunch"><span class="wt">12:00</span> 🍽️ Lunch</li>
+                                <li><span class="wt">1:00pm</span> 🧩 Enablement</li>
+                                <li><span class="wt">2:30pm</span> ☁️ CloudOps</li>
+                      </ul>
+              </a>
+        
+              <a class="week-day" href="#tuesday">
+                      <div class="day-pill red">TUE 30</div>
+                      <ul class="week-list">
+                                <li><span class="wt">9:30</span> 🏗️ Arch. meeting</li>
+                                <li><span class="wt">11:00</span> 🎧 Webinar</li>
+                                <li class="lunch"><span class="wt">12:00</span> 🍽️ Lunch</li>
+                                <li><span class="wt">1:30pm</span> 📋 Project Mgmt</li>
+                                <li><span class="wt">2:00pm</span> ⚙️ DevOps intro</li>
+                      </ul>
+              </a>
+        
+              <a class="week-day" href="#wednesday">
+                      <div class="day-pill brown">WED 1 JUL</div>
+                      <ul class="week-list">
+                                <li><span class="wt">9:15</span> 📋 Project Mgmt</li>
+                                <li><span class="wt">10:00</span> ☕ TechNExt debrief</li>
+                                <li><span class="wt">10:30</span> 🔐 Security</li>
+                                <li class="lunch"><span class="wt">12:00</span> 🍽️ Lunch</li>
+                      </ul>
+              </a>
+        
+              <a class="week-day" href="#thursday">
+                      <div class="day-pill white">THU 2 JUL</div>
+                      <ul class="week-list">
+                                <li><span class="wt">9:30</span> 💬 WebChat</li>
+                                <li class="lunch"><span class="wt">12:00</span> 🍽️ Lunch</li>
+                                <li><span class="wt">1:00pm</span> 📦 Product Mgmt</li>
+                                <li><span class="wt">3:00pm</span> 🏗️ Architecture</li>
+                      </ul>
+              </a>
+        
+              <a class="week-day" href="#friday">
+                      <div class="day-pill">FRI 3 JUL</div>
+                      <ul class="week-list">
+                                <li><span class="wt">10:00</span> 🚦 Load Testing</li>
+                                <li class="lunch"><span class="wt">12:00</span> 🍽️ Lunch</li>
+                      </ul>
+              </a>
+        
+        </div>
+        <p style="color:var(--muted);font-size:11px;margin-top:16px;">Times shown are start times. Full slots, rooms and names are in each day's own section.</p>
+    </div>
+  </section>
+
+</li></li></span><!-- ===== MONDAY ===== -->
 <section class="section" id="monday">
   <div class="section-header reveal">
     <div class="day-pill">MON 29 JUNE</div>
