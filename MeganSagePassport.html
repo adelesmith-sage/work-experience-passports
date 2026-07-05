@@ -1,0 +1,2158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Megan's Sage Work Experience Passport 🌿</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap');
+  .week-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+    a.week-day { display: block; background: var(--dark); border: 1px solid var(--border); border-radius: 14px; padding: 14px 12px; text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
+    a.week-day:hover { border-color: var(--green); transform: translateY(-2px); }
+    .week-day .day-pill { display: inline-block; margin-bottom: 12px; }
+    .week-list { list-style: none; }
+    .week-list li { display: flex; gap: 8px; align-items: baseline; font-size: 12px; color: #ddd; line-height: 1.4; padding: 7px 0; border-top: 1px solid rgba(255,255,255,0.06); }
+    .week-list li:first-child { border-top: none; padding-top: 0; }
+    .week-list .wt { flex: 0 0 auto; min-width: 42px; color: var(--green); font-family: 'Space Mono', monospace; font-size: 11px; white-space: nowrap; }
+    .week-list li.lunch { color: var(--muted); }
+    .week-list li.lunch .wt { color: var(--muted); }
+    @media (max-width: 760px) { .week-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 460px) { .week-grid { grid-template-columns: 1fr; } }
+  
+  :root {
+    --green: #00FF6B;
+    --green-mid: #00A159;
+    --green-deep: #006716;
+    --green-dark: #00460C;
+    --black: #0a0a0a;
+    --dark: #111111;
+    --card-bg: #161616;
+    --red: #E84D4F;
+    --brown-dark: #3A2417;
+    --brown-mid: #B26E3D;
+    --skin: #DDB89E;
+    --white: #f5f5f5;
+    --muted: #888;
+    --border: #2a2a2a;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ===== PRINT STYLES ===== */
+  @media print {
+    @page { size: A4; margin: 12mm; }
+    body { background: #fff !important; color: #111 !important; font-size: 11px; line-height: 1.45; }
+    :root {
+      --green: #111;
+      --green-mid: #111;
+      --green-deep: #111;
+      --green-dark: #111;
+      --black: #fff;
+      --dark: #fff;
+      --card-bg: #fff;
+      --red: #111;
+      --brown-dark: #111;
+      --brown-mid: #111;
+      --skin: #fff;
+      --white: #111;
+      --muted: #333;
+      --border: #ccc;
+    }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .no-print { display: none !important; }
+    .pdf-hide { display: none !important; }
+    .cover::before, .deco-circle, .flow-line, .footer .logo { display: none !important; }
+    .cover, .section, .container, .footer {
+      background: #fff !important;
+      color: #111 !important;
+      border-color: #ddd !important;
+      box-shadow: none !important;
+    }
+    .cover { min-height: auto; padding: 18px 0; }
+    .section { padding: 16px 0; break-inside: avoid-page; }
+    .page-break { break-before: page; }
+    .card {
+      background: #fff !important;
+      border: 1px solid #ddd !important;
+      break-inside: avoid-page;
+    }
+    h1, h2, h3, h4, p, span, label, li, .card-label, .day-pill, .section-title,
+    .big-stat, .salary-display, .hl, .hl-red, .word-tag {
+      color: #111 !important;
+    }
+    .fun-fact, .joke-box, .choice-btn, .bingo-cell, .check-box, .progress-bar-wrap {
+      background: #fff !important;
+      border-color: #ccc !important;
+      color: #111 !important;
+    }
+    .progress-bar { background: #666 !important; }
+    .day-pill, .day-pill.red, .day-pill.brown, .day-pill.white {
+      background: #fff !important;
+      color: #111 !important;
+      border: 1px solid #bbb !important;
+    }
+    input, textarea, select {
+      border: 1px solid #bbb !important;
+      background: #fff !important;
+      color: #111 !important;
+      -webkit-text-fill-color: #111 !important;
+    }
+    input::placeholder, textarea::placeholder {
+      color: transparent !important;
+    }
+  }
+
+  /* ===== TYPOGRAPHY ===== */
+  h1, h2, h3, h4, .label {
+    font-family: 'Syne', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ===== LAYOUT ===== */
+  .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+
+  /* ===== COVER ===== */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,255,107,0.08) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .cover-badge {
+    background: var(--green);
+    color: var(--black);
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 999px;
+    margin-bottom: 28px;
+    display: inline-block;
+  }
+
+  .cover h1 {
+    font-size: clamp(36px, 8vw, 80px);
+    font-weight: 800;
+    color: var(--green);
+    line-height: 0.95;
+    margin-bottom: 12px;
+  }
+
+  .cover h2 {
+    font-size: clamp(14px, 3vw, 22px);
+    color: var(--white);
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    margin-bottom: 40px;
+    opacity: 0.7;
+  }
+
+  .cover-dates {
+    font-size: 12px;
+    color: var(--green-mid);
+    letter-spacing: 0.2em;
+    margin-bottom: 48px;
+  }
+
+  .cover-input-row {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .cover-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: left;
+  }
+
+  .cover-field label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+    font-family: 'Syne', sans-serif;
+  }
+
+  .cover-field input {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .cover-field input:focus { border-color: var(--green); }
+
+  .flow-line {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 30px 0;
+  }
+
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); opacity: 0.3; }
+  .dot.active { opacity: 1; }
+  .dash { width: 24px; height: 3px; border-radius: 2px; background: var(--green); opacity: 0.2; align-self: center; }
+
+  /* ===== NAV ===== */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 20px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+  }
+
+  .nav a:hover, .nav a.active {
+    color: var(--green);
+    border-color: var(--green);
+  }
+
+  /* ===== SECTIONS ===== */
+  .section { padding: 60px 0; border-bottom: 1px solid var(--border); }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+
+  .day-pill {
+    background: var(--green);
+    color: var(--black);
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .day-pill.red { background: var(--red); color: white; }
+  .day-pill.brown { background: var(--brown-mid); color: white; }
+  .day-pill.white { background: var(--white); color: var(--black); }
+
+  .section-title {
+    font-size: clamp(22px, 5vw, 40px);
+    font-weight: 800;
+    color: var(--white);
+  }
+
+  .section-title span { color: var(--green); }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  .card.green-border { border-color: var(--green-dark); }
+  .card.red-border { border-color: var(--red); }
+
+  .card-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--green);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .card-label.red { color: var(--red); }
+  .card-label.muted { color: var(--muted); }
+
+  .card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--white);
+  }
+
+  .card p {
+    color: #aaa;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  /* ===== GRID ===== */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+  @media (max-width: 600px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+
+  /* ===== INPUTS ===== */
+  input[type="text"], input[type="number"], textarea, select {
+    width: 100%;
+    background: #1e1e1e;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: vertical;
+  }
+
+  input[type="text"]:focus, input[type="number"]:focus, textarea:focus, select:focus {
+    border-color: var(--green);
+  }
+
+  select { cursor: pointer; }
+
+  .field-label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+    font-family: 'Syne', sans-serif;
+    margin-bottom: 8px;
+    margin-top: 16px;
+  }
+
+  /* ===== CHECKLIST ===== */
+  .checklist { list-style: none; }
+
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .checklist li:last-child { border-bottom: none; }
+
+  .checklist li:hover { color: var(--white); }
+
+  .check-box {
+    width: 20px; height: 20px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .check-box.checked {
+    background: var(--green);
+    border-color: var(--green);
+    color: var(--black);
+    font-size: 12px;
+  }
+
+  /* ===== FUN FACT BOX ===== */
+  .fun-fact {
+    background: linear-gradient(135deg, rgba(0,255,107,0.08), rgba(0,161,89,0.05));
+    border: 1px solid rgba(0,255,107,0.25);
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin: 20px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .fun-fact::before {
+    content: '💡';
+    position: absolute;
+    top: -10px; right: 16px;
+    font-size: 40px;
+    opacity: 0.15;
+  }
+
+  .fun-fact .label { color: var(--green); font-size: 10px; letter-spacing: 0.2em; margin-bottom: 8px; }
+  .fun-fact p { color: #ccc; font-size: 13px; }
+  .fun-fact strong { color: var(--green); }
+
+  /* ===== JOKE BOX ===== */
+  .joke-box {
+    background: rgba(232,77,79,0.08);
+    border: 1px solid rgba(232,77,79,0.2);
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin: 20px 0;
+    font-size: 13px;
+    color: #ccc;
+  }
+
+  .joke-box .q { color: var(--red); font-weight: 700; margin-bottom: 6px; }
+  .joke-box .a { font-style: italic; opacity: 0.7; font-size: 12px; }
+
+  /* ===== STAR RATING ===== */
+  .star-rating { display: flex; gap: 6px; margin: 8px 0; }
+  .star { font-size: 22px; cursor: pointer; opacity: 0.3; transition: opacity 0.15s; }
+  .star:hover, .star.lit { opacity: 1; }
+
+  /* ===== PROGRESS ===== */
+  .progress-bar-wrap {
+    background: var(--border);
+    border-radius: 999px;
+    height: 8px;
+    margin: 8px 0;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: var(--green);
+    border-radius: 999px;
+    transition: width 0.5s ease;
+  }
+
+  /* ===== BINGO ===== */
+  .bingo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .bingo-cell {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 8px;
+    text-align: center;
+    font-size: 11px;
+    color: #aaa;
+    cursor: pointer;
+    transition: all 0.2s;
+    line-height: 1.4;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bingo-cell:hover { border-color: var(--green); color: var(--white); }
+  .bingo-cell.stamped {
+    background: rgba(0,255,107,0.12);
+    border-color: var(--green);
+    color: var(--green);
+  }
+
+  .bingo-cell.free {
+    background: var(--green);
+    color: var(--black);
+    font-weight: 700;
+    font-family: 'Syne', sans-serif;
+  }
+
+  /* ===== WORD CLOUD INPUT ===== */
+  .word-cloud { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+  .word-tag {
+    background: rgba(0,255,107,0.1);
+    border: 1px solid rgba(0,255,107,0.3);
+    border-radius: 999px;
+    padding: 5px 14px;
+    font-size: 12px;
+    color: var(--green);
+  }
+
+  /* ===== TIMELINE ===== */
+  .timeline { position: relative; padding-left: 24px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px; bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--green), var(--green-dark), transparent);
+    border-radius: 2px;
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+    padding-left: 20px;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -28px; top: 6px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 0 3px rgba(0,255,107,0.15);
+  }
+
+  .timeline-item .tl-label {
+    font-size: 10px;
+    color: var(--green);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-family: 'Syne', sans-serif;
+    margin-bottom: 4px;
+  }
+
+  /* ===== SALARY CALCULATOR ===== */
+  .salary-display {
+    font-family: 'Syne', sans-serif;
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--green);
+    line-height: 1;
+  }
+
+  .salary-sub { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  /* ===== COVER PAGE DECO ===== */
+  .deco-circle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  /* ===== SCROLL REVEAL ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== DIVIDER ===== */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 28px 0;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-family: 'Syne', sans-serif;
+  }
+
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ===== HIGHLIGHT ===== */
+  .hl { color: var(--green); }
+  .hl-red { color: var(--red); }
+
+  /* ===== BIG NUMBER ===== */
+  .big-stat {
+    font-family: 'Syne', sans-serif;
+    font-size: 56px;
+    font-weight: 800;
+    color: var(--green);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .big-stat-label { font-size: 12px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* ===== RADIO CHOICE ===== */
+  .choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0; }
+  .choice-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    color: #aaa;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+  }
+
+  .choice-btn:hover { border-color: var(--green); color: var(--white); }
+  .choice-btn.selected { background: rgba(0,255,107,0.1); border-color: var(--green); color: var(--green); }
+  .choice-btn .choice-icon { font-size: 20px; margin-bottom: 6px; display: block; }
+
+  /* ===== SAVE BUTTON ===== */
+  .save-btn {
+    background: var(--green);
+    color: var(--black);
+    border: none;
+    border-radius: 999px;
+    padding: 14px 32px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+
+  .save-btn:hover { background: #00cc56; transform: translateY(-1px); }
+
+  /* ===== QUOTE FILL ===== */
+  .quote-fill {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(18px, 4vw, 28px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.5;
+  }
+
+  .quote-blank {
+    display: inline-block;
+    border-bottom: 2px solid var(--green);
+    min-width: 120px;
+    color: var(--green);
+    font-style: italic;
+  }
+
+  /* ===== EMOJI SCALE ===== */
+  .emoji-scale { display: flex; gap: 12px; justify-content: center; margin: 16px 0; }
+  .emoji-opt {
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    padding: 8px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+  }
+
+  .emoji-opt:hover { transform: scale(1.2); }
+  .emoji-opt.picked { border-color: var(--green); background: rgba(0,255,107,0.08); }
+  .emoji-opt .e { font-size: 28px; display: block; }
+  .emoji-opt .el { font-size: 10px; color: var(--muted); margin-top: 4px; display: block; letter-spacing: 0.05em; }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center;
+    padding: 48px 20px;
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  .footer .logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--green);
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+
+  /* ===== LOCK SCREEN ===== */
+  body.locked { overflow: hidden; }
+
+  #lock-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  #lock-screen::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,255,107,0.08) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  #lock-screen.hidden { display: none; }
+
+  .lock-card {
+    position: relative;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 40px 32px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .lock-badge {
+    background: var(--green);
+    color: var(--black);
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 999px;
+    margin-bottom: 24px;
+    display: inline-block;
+  }
+
+  .lock-emoji { font-size: 44px; margin-bottom: 14px; }
+
+  .lock-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--green);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+
+  .lock-sub { color: #aaa; font-size: 13px; line-height: 1.6; margin-bottom: 24px; }
+
+  #lock-input {
+    width: 100%;
+    background: #1e1e1e;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    outline: none;
+    margin-bottom: 12px;
+    transition: border-color 0.2s;
+  }
+
+  #lock-input:focus { border-color: var(--green); }
+
+  #lock-btn {
+    width: 100%;
+    background: var(--green);
+    color: var(--black);
+    border: none;
+    border-radius: 999px;
+    padding: 14px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  #lock-btn:hover { background: #00cc56; }
+
+  #lock-error {
+    color: var(--red);
+    font-size: 12px;
+    margin-top: 14px;
+    height: 16px;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  #lock-error.show { opacity: 1; }
+
+  .lock-note {
+    margin-top: 20px;
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 1.6;
+    letter-spacing: 0.03em;
+  }
+
+  /* ===== FLOATING CONTROLS ===== */
+  #passport-controls {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 8px 12px;
+  }
+
+  #passport-controls button, .import-label {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: #aaa;
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  #passport-controls button:hover, .import-label:hover { border-color: var(--green); color: var(--green); }
+
+  #save-indicator {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-left: 4px;
+    transition: color 0.2s;
+  }
+
+  #save-indicator.flash { color: var(--green); }
+
+  @media print {
+    #lock-screen, #passport-controls { display: none !important; }
+    body.locked { overflow: visible !important; }
+  }
+</style>
+</head>
+<body class="locked">
+
+<!-- ===== LOCK SCREEN ===== -->
+<div id="lock-screen">
+  <div class="lock-card">
+    <div class="lock-badge">🌿 Sage Work Experience 2026</div>
+    <div class="lock-emoji">🔒</div>
+    <h1 class="lock-title">Your Passport</h1>
+    <p class="lock-sub">Enter your password to open your own private copy. Everything you type gets saved on this device, so you can pick up where you left off each day.</p>
+    <input type="password" id="lock-input" placeholder="enter password..." autocomplete="off" autocapitalize="none" spellcheck="false" />
+    <button id="lock-btn" onclick="tryUnlock()">Unlock →</button>
+    <p id="lock-error">That password didn't match — try again.</p>
+    <p class="lock-note">Tip: use the same browser each day so your answers are waiting for you. You can also back them up any time with the <strong>export</strong> button once you're in.</p>
+  </div>
+</div>
+
+<!-- COVER -->
+<div class="cover" id="cover">
+  <div class="deco-circle" style="width:400px;height:400px;border:1px solid rgba(0,255,107,0.06);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+  <div class="deco-circle" style="width:200px;height:200px;border:1px solid rgba(0,255,107,0.1);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+  <div class="cover-badge">🌿 Sage Work Experience 2026</div>
+  <h1>MEGAN'S<br>PASSPORT</h1>
+  <h2>29 JUNE — 3 JULY</h2>
+  <div class="cover-dates">MON · TUE · WED · THU · FRI &nbsp;·&nbsp; 9:30AM – 4PM</div>
+  <div class="flow-line">
+    <div class="dot active"></div><div class="dash"></div>
+    <div class="dot active"></div><div class="dash"></div>
+    <div class="dot active"></div><div class="dash"></div>
+    <div class="dot active"></div><div class="dash"></div>
+    <div class="dot"></div>
+  </div>
+  <div class="cover-input-row">
+    <div class="cover-field">
+      <label>Your full name</label>
+      <input type="text" placeholder="Megan..." />
+    </div>
+    <div class="cover-field">
+      <label>Your school / college</label>
+      <input type="text" placeholder="Where are you from?" />
+    </div>
+    <div class="cover-field">
+      <label>Your team / department at Sage</label>
+      <input type="text" placeholder="Which team are you with?" />
+    </div>
+    <div class="cover-field">
+      <label>One word that describes you</label>
+      <input type="text" placeholder="e.g. chaotic, caffeinated..." />
+    </div>
+  </div>
+  <p style="margin-top:32px;font-size:11px;color:var(--muted);max-width:360px;text-align:center;line-height:1.7;">
+    this is YOUR passport. fill it in, doodle on it <span class="pdf-hide">(jk, it's digital)</span>, come back to it each day. it's proof you were here — and that you did something with it.
+  </p>
+</div>
+
+<!-- NAV -->
+<nav class="nav no-print" id="main-nav">
+  <a href="#intro">intro</a>
+    <a href="#week">week</a>
+  <a href="#monday">mon</a>
+  <a href="#tuesday">tue</a>
+  <a href="#wednesday">wed</a>
+  <a href="#thursday">thu</a>
+  <a href="#friday">fri</a>
+  <a href="#bingo">bingo</a>
+  <a href="#careers">careers</a>
+  <a href="#cert">cert</a>
+</nav>
+
+<div class="container">
+
+<!-- ===== INTRO / HOW TO USE ===== -->
+<section class="section" id="intro">
+  <div class="section-header reveal">
+    <div class="day-pill">BEFORE YOU START</div>
+    <h2 class="section-title">READ <span>THIS</span> FIRST</h2>
+  </div>
+
+  <div class="card green-border reveal">
+    <div class="card-label">Your mission, should you choose to accept it (you don't have a choice)</div>
+    <p>This passport is your companion for the week. When you're not shadowing someone, do a section. Each day has:</p>
+    <ul style="margin-top:12px;padding-left:16px;color:#aaa;font-size:13px;line-height:2;">
+      <li>📖 a bit of actual knowledge (brief, we promise)</li>
+      <li>✍️ things to fill in and reflect on</li>
+      <li>😂 a terrible tech joke (you're welcome)</li>
+      <li>💡 a fun fact to casually drop in conversation</li>
+      <li>🎯 a challenge / mission for that day</li>
+      <li>🌙 an end-of-day review</li>
+    </ul>
+  </div>
+
+  <div class="grid-2 reveal">
+    <div class="card">
+      <div class="card-label">The vibe</div>
+      <h3>No wrong answers</h3>
+      <p>This is NOT assessed. There are no wrong answers. Write honestly — you'll look back on this and cringe in the best way possible.</p>
+    </div>
+    <div class="card">
+      <div class="card-label">The goal</div>
+      <h3>Leave knowing more</h3>
+      <p>By Friday you should know: what tech companies actually do, what YOUR options are, and whether this is a world you want in on.</p>
+    </div>
+  </div>
+
+  <div class="fun-fact reveal">
+    <div class="label">⚡ FUN FACT — SAGE ORIGIN STORY</div>
+    <p>Sage was named after a <strong>herb poster on a pub wall</strong> in Newcastle. They nearly called themselves <strong>Parsley Systems</strong>. Say it out loud. You're welcome. The Rose &amp; Crown pub in Gateshead. 1981. That's where it all started.</p>
+  </div>
+
+  <div class="card reveal" style="margin-top:16px;">
+    <div class="card-label">Quick question to kick things off</div>
+    <label class="field-label">Before this week, what did you think people at tech companies actually DO all day?</label>
+    <textarea rows="3" placeholder="Be honest..."></textarea>
+    <label class="field-label">What's one thing you're nervous about this week?</label>
+    <textarea rows="2" placeholder="No judgement..."></textarea>
+    <label class="field-label">What's one thing you're excited about?</label>
+    <textarea rows="2" placeholder="Even if it's just the free snacks..."></textarea>
+  </div>
+</section>
+
+<!-- ===== WEEK AT A GLANCE ===== -->
+  <section class="section" id="week">
+      <div class="section-header reveal">
+            <div class="day-pill">THE WHOLE WEEK</div>
+            <h2 class="section-title">WEEK AT <span>A GLANCE</span></h2>
+      </div>
+  
+    <div class="card reveal" style="border-color:var(--green-dark);">
+        <div class="card-label">🗓️ 29 JUNE – 3 JULY · 9:30AM TO 4PM</div>
+        <p style="margin-bottom:4px;">Your whole week in one view. Tap any day to jump to the full detail — rooms, times and who you're meeting.</p>
+        <div class="week-grid" style="margin-top:18px;">
+        
+              <a class="week-day" href="#monday">
+                      <div class="day-pill">MON 29</div>
+                      <ul class="week-list">
+                                <li><span class="wt">9:30</span> 👋 Tour &amp; intro</li>
+                                <li class="lunch"><span class="wt">12:00</span> 🍽️ Lunch</li>
+                                <li><span class="wt">1:00pm</span> 🧩 Enablement</li>
+                                <li><span class="wt">2:30pm</span> ☁️ CloudOps</li>
+                      </ul>
+              </a>
+        
+              <a class="week-day" href="#tuesday">
+                      <div class="day-pill red">TUE 30</div>
+                      <ul class="week-list">
+                                <li><span class="wt">9:30</span> 🏗️ Arch. meeting</li>
+                                <li><span class="wt">11:00</span> 🎧 Webinar</li>
+                                <li class="lunch"><span class="wt">12:00</span> 🍽️ Lunch</li>
+                                <li><span class="wt">1:30pm</span> 📋 Project Mgmt</li>
+                                <li><span class="wt">2:00pm</span> ⚙️ DevOps intro</li>
+                      </ul>
+              </a>
+        
+              <a class="week-day" href="#wednesday">
+                      <div class="day-pill brown">WED 1 JUL</div>
+                      <ul class="week-list">
+                                <li><span class="wt">9:15</span> 📋 Project Mgmt</li>
+                                <li><span class="wt">10:00</span> ☕ TechNExt debrief</li>
+                                <li><span class="wt">10:30</span> 🔐 Security</li>
+                                <li class="lunch"><span class="wt">12:00</span> 🍽️ Lunch</li>          <li><span class="wt">2:00pm</span> 💼 Sales</li>
+                      </ul>
+              </a>
+        
+              <a class="week-day" href="#thursday">
+                      <div class="day-pill white">THU 2 JUL</div>
+                      <ul class="week-list">
+                                <li><span class="wt">9:30</span> 💬 WebChat</li>
+                                <li class="lunch"><span class="wt">12:00</span> 🍽️ Lunch</li>
+                                <li><span class="wt">1:00pm</span> 📦 Product Mgmt</li>
+                                <li><span class="wt">3:00pm</span> 🏗️ Architecture</li>
+                      </ul>
+              </a>
+        
+              <a class="week-day" href="#friday">
+                      <div class="day-pill">FRI 3 JUL</div>
+                      <ul class="week-list">
+                                <li><span class="wt">10:00</span> 🚦 Load Testing</li>
+                                <li class="lunch"><span class="wt">12:00</span> 🍽️ Lunch</li>
+                      </ul>
+              </a>
+        
+        </div>
+        <p style="color:var(--muted);font-size:11px;margin-top:16px;">Times shown are start times. Full slots, rooms and names are in each day's own section.</p>
+    </div>
+  </section>
+
+</li></li></span><!-- ===== MONDAY ===== -->
+<section class="section" id="monday">
+  <div class="section-header reveal">
+    <div class="day-pill">MON 29 JUNE</div>
+    <h2 class="section-title">DAY <span>ONE</span><br>ORIENTATION</h2>
+  </div>
+
+  <div class="card reveal" style="border-color:var(--green-dark);">
+    <div class="card-label">🗓️ MONDAY'S PLAN — 9:30am to 4pm</div>
+    <div class="timeline" style="margin-top:10px;">
+      <div class="timeline-item">
+        <div class="tl-label">9:30 – 10:00am</div>
+        <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:14px;font-weight:700;">👋 Meet &amp; office tour</div>
+        <div style="color:#aaa;font-size:12px;margin-top:3px;">with Chris Latimer &nbsp;·&nbsp; 📍 C23 Reception</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-label">12:00 – 1:00pm</div>
+        <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:14px;font-weight:700;">🍽️ Lunch</div>
+        <div style="color:#aaa;font-size:12px;margin-top:3px;">📍 Canteen</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-label">1:00 – 2:30pm</div>
+        <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:14px;font-weight:700;">🧩 Enablement work experience</div>
+        <div style="color:#aaa;font-size:12px;margin-top:3px;">with Jordan Hall &nbsp;·&nbsp; 📍 C23 Floor 3 South</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-label">2:30 – 3:30pm</div>
+        <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:14px;font-weight:700;">☁️ CloudOps work experience</div>
+        <div style="color:#aaa;font-size:12px;margin-top:3px;">with Dimitris Christodoulos &nbsp;·&nbsp; 📍 C23 Floor 3 South</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card reveal">
+    <div class="card-label">🌅 Morning prompt — fill in before 10am</div>
+    <label class="field-label">What did you have for breakfast? (science says it affects your focus. also we're curious.)</label>
+    <input type="text" placeholder="...toast? a coffee? existential dread?" />
+    <label class="field-label">Your first impression of the office / building</label>
+    <textarea rows="2" placeholder="Describe it like you're texting a friend"></textarea>
+    <label class="field-label">The first person you met — what was their job title?</label>
+    <input type="text" placeholder="e.g. Senior Software Engineer, Product Manager..." />
+  </div>
+
+  <div class="joke-box reveal">
+    <div class="q">❓ Why do programmers prefer dark mode?</div>
+    <div class="a">Because light attracts bugs. 🐛 (You'll understand this more by Thursday. Trust.)</div>
+  </div>
+
+  <div class="divider reveal">learn this</div>
+
+  <div class="card green-border reveal">
+    <div class="card-label">📖 WHAT IS AN API? — the 60-second version</div>
+    <p style="margin-bottom:14px;">Think of an API like a <strong style="color:var(--white)">waiter in a restaurant</strong>. You (an app) sit at the table. The kitchen (another app) has what you need. The waiter (API) takes your order, goes to the kitchen, and brings back your food. You never go in the kitchen. You don't need to know how it works in there — you just get your food.</p>
+    <p>That's literally it. When you tap "Sign in with Google" on an app, that app doesn't have your Google password. It uses Google's API — the waiter — to check you're real and bring back just enough info to let you in. <strong style="color:var(--green)">Safe. Clean. Done.</strong></p>
+  </div>
+
+  <div class="card reveal">
+    <div class="card-label">✅ API QUICK CHECK — circle the right answer (just type it)</div>
+    <p style="color:#aaa;font-size:13px;margin-bottom:16px;">An API is like a _______. Pick the best answer:</p>
+    <div class="choice-grid" id="api-choices">
+      <div class="choice-btn" onclick="pickChoice(this,'api-choices')">
+        <span class="choice-icon">🍽️</span>
+        A waiter between two apps
+      </div>
+      <div class="choice-btn" onclick="pickChoice(this,'api-choices')">
+        <span class="choice-icon">🏠</span>
+        The app's homepage
+      </div>
+      <div class="choice-btn" onclick="pickChoice(this,'api-choices')">
+        <span class="choice-icon">💻</span>
+        A type of laptop
+      </div>
+      <div class="choice-btn" onclick="pickChoice(this,'api-choices')">
+        <span class="choice-icon">🔑</span>
+        A type of password
+      </div>
+    </div>
+    <p style="font-size:11px;color:var(--muted);margin-top:8px;">(hint: the first one is right. but also, you knew that.)</p>
+  </div>
+
+  <div class="fun-fact reveal">
+    <div class="label">💡 FUN FACT</div>
+    <p>Sage was the <strong>best-performing UK share of the entire 1990s</strong>. One whole decade. And it was just a Newcastle accounting software company. Sometimes boring-but-essential beats flashy-but-pointless. Noted.</p>
+  </div>
+
+  <div class="divider reveal">your people mission</div>
+
+  <div class="card reveal">
+    <div class="card-label">🕵️ MONDAY MISSION: "WHO WORKS AT SAGE?"</div>
+    <p style="color:#aaa;font-size:13px;margin-bottom:16px;">Talk to at least 3 people today. Find out their job title and one surprising thing about their role. (Pro tip: people LOVE being asked about their job. It's their fave topic.)</p>
+    <label class="field-label">Person 1 — name + job title</label>
+    <input type="text" placeholder="e.g. Sarah — UX Designer" />
+    <label class="field-label">What surprised you about their role?</label>
+    <input type="text" placeholder="..." />
+    <label class="field-label">Person 2 — name + job title</label>
+    <input type="text" placeholder="..." />
+    <label class="field-label">What surprised you about their role?</label>
+    <input type="text" placeholder="..." />
+    <label class="field-label">Person 3 — name + job title</label>
+    <input type="text" placeholder="..." />
+    <label class="field-label">What surprised you about their role?</label>
+    <input type="text" placeholder="..." />
+  </div>
+
+  <div class="card reveal">
+    <div class="card-label">🌙 END OF DAY — Monday Review</div>
+    <label class="field-label">Rate today's vibe</label>
+    <div class="emoji-scale" id="monday-vibe">
+      <div class="emoji-opt" onclick="pickEmoji(this,'monday-vibe')"><span class="e">😴</span><span class="el">dead</span></div>
+      <div class="emoji-opt" onclick="pickEmoji(this,'monday-vibe')"><span class="e">😐</span><span class="el">fine</span></div>
+      <div class="emoji-opt" onclick="pickEmoji(this,'monday-vibe')"><span class="e">🙂</span><span class="el">good</span></div>
+      <div class="emoji-opt" onclick="pickEmoji(this,'monday-vibe')"><span class="e">😄</span><span class="el">great</span></div>
+      <div class="emoji-opt" onclick="pickEmoji(this,'monday-vibe')"><span class="e">🤩</span><span class="el">unreal</span></div>
+    </div>
+    <label class="field-label">One word that sums up your Monday</label>
+    <input type="text" placeholder="just one word..." />
+    <label class="field-label">Something that made you go "huh, didn't expect that"</label>
+    <textarea rows="2" placeholder="..."></textarea>
+    <label class="field-label">If Monday was a Spotify playlist, what would it be called?</label>
+    <input type="text" placeholder="..."></input>
+  </div>
+</section>
+
+<!-- ===== TUESDAY ===== -->
+<section class="section" id="tuesday">
+  <div class="section-header reveal">
+    <div class="day-pill red">TUE 30 JUNE</div>
+    <h2 class="section-title">DAY <span>TWO</span><br>TECH WORLD</h2>
+  </div>
+
+  <div class="card reveal" style="border-color:var(--green-dark);">
+    <div class="card-label">🗓️ TUESDAY'S PLAN — 9:30am to 4pm</div>
+    <div class="timeline" style="margin-top:10px;">
+      <div class="timeline-item">
+        <div class="tl-label">9:30 – 10:00am</div>
+        <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:14px;font-weight:700;">🏗️ Architecture team meeting</div>
+        <div style="color:#aaa;font-size:12px;margin-top:3px;">📍 C23 Floor 3 South, Room 11</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-label">11:00 – 11:50am</div>
+        <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:14px;font-weight:700;">🎧 Webinar</div>
+        <div style="color:#aaa;font-size:12px;margin-top:3px;">with Duncan Morgan &nbsp;·&nbsp; 📍 C22 Reception (meet here)</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-label">12:00 – 1:00pm</div>
+        <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:14px;font-weight:700;">🍽️ Lunch</div>
+        <div style="color:#aaa;font-size:12px;margin-top:3px;">📍 Canteen</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-label">1:30 – 2:00pm</div>
+        <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:14px;font-weight:700;">📋 Project Management work experience</div>
+        <div style="color:#aaa;font-size:12px;margin-top:3px;">with Lee Harker &nbsp;·&nbsp; 📍 C23 Floor 3 South</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-label">2:00 – 3:00pm</div>
+        <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:14px;font-weight:700;">⚙️ Intro to DevOps</div>
+        <div style="color:#aaa;font-size:12px;margin-top:3px;">with Carl Treglown &nbsp;·&nbsp; 📍 C23 Floor 3 South</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fun-fact reveal" style="border-color:rgba(232,77,79,0.3);background:rgba(232,77,79,0.06);">
+    <div class="label" style="color:var(--red);">⚡ DAY TWO ENERGY</div>
+    <p>The nerves of day one are gone. Today's the day to start asking the questions you were too shy to ask yesterday. Here's a secret: <strong style="color:var(--white)">nobody expects you to know anything</strong> — they expect you to be curious. Lean into it.</p>
+  </div>
+
+  <div class="card reveal">
+    <div class="card-label">🌅 Morning check-in</div>
+    <label class="field-label">What's one thing from yesterday that's still rattling around in your head?</label>
+    <textarea rows="2" placeholder="Anything that stuck with you..."></textarea>
+    <label class="field-label">What's one thing you want to do better today than you did yesterday?</label>
+    <textarea rows="2" placeholder="Even something small..."></textarea>
+  </div>
+
+  <div class="divider reveal">the big picture</div>
+
+  <div class="card green-border reveal">
+    <div class="card-label">📖 JOBS IN TECH — it's not all coding in hoodies</div>
+    <p>Here's a secret: <strong style="color:var(--white)">most people in tech don't write code all day.</strong> There are hundreds of roles in a tech company. Here are some of the main ones:</p>
+  </div>
+
+  <div class="grid-3 reveal">
+    <div class="card">
+      <div class="card-label">💻 engineering</div>
+      <h3>Software Engineer</h3>
+      <p>Builds and tests the actual product. Writes code. Fixes bugs. Makes things work. Can earn £28k–£130k+.</p>
+    </div>
+    <div class="card">
+      <div class="card-label">🎨 design</div>
+      <h3>UX Designer</h3>
+      <p>Makes sure the product is easy and enjoyable to use. Designs the screens, flows, and experience. Huge demand.</p>
+    </div>
+    <div class="card">
+      <div class="card-label">📊 data</div>
+      <h3>Data Analyst</h3>
+      <p>Turns raw numbers into insights. Helps the business make decisions. "What's actually happening?" — that's their job.</p>
+    </div>
+    <div class="card">
+      <div class="card-label">🔐 security</div>
+      <h3>Cybersecurity</h3>
+      <p>Protects the company from hackers. Finds weaknesses before the bad guys do. Massive shortage of talent right now.</p>
+    </div>
+    <div class="card">
+      <div class="card-label">📦 product</div>
+      <h3>Product Manager</h3>
+      <p>Decides what gets built and why. Talks to customers, talks to engineers, figures out what to prioritise. Very strategic.</p>
+    </div>
+    <div class="card">
+      <div class="card-label">🤝 commercial</div>
+      <h3>Sales / Marketing</h3>
+      <p>Gets the product in front of people. Tells the story. Closes deals. You don't need to code to work in tech at all.</p>
+    </div>
+  </div>
+
+  <div class="card reveal">
+    <div class="card-label">✍️ YOUR REACTION</div>
+    <label class="field-label">Which of those roles sounds most like you? Why?</label>
+    <textarea rows="3" placeholder="Don't say 'I don't know' — have a guess..."></textarea>
+    <label class="field-label">Which sounds least like you and why?</label>
+    <textarea rows="2" placeholder="..."></textarea>
+  </div>
+
+  <div class="joke-box reveal">
+    <div class="q">❓ Why did the developer go broke?</div>
+    <div class="a">Because they used up all their cache. 💸 (cache = temporary computer storage. also a pun on "cash". you're groaning. good.)</div>
+  </div>
+
+  <div class="divider reveal">tuesday challenge</div>
+
+  <div class="card reveal">
+    <div class="card-label">🎯 TUESDAY MISSION: "THE JOB SHADOW DEBRIEF"</div>
+    <p style="color:#aaa;font-size:13px;margin-bottom:16px;">You're shadowing real people today. Pay attention. Then fill this in:</p>
+    <label class="field-label">Which team or person did you shadow today?</label>
+    <input type="text" placeholder="..." />
+    <label class="field-label">Describe what they were working on in plain English (no jargon)</label>
+    <textarea rows="3" placeholder="Imagine explaining it to your younger sibling..."></textarea>
+    <label class="field-label">What tools / software did you see them using?</label>
+    <input type="text" placeholder="e.g. Slack, Excel, some dashboard thing I don't know the name of..." />
+    <label class="field-label">One question you asked them (or wish you'd asked)</label>
+    <textarea rows="2" placeholder="..."></textarea>
+  </div>
+
+  <div class="fun-fact reveal">
+    <div class="label">💡 FUN FACT — The Tech Skills Gap</div>
+    <p>By <strong>2030, the UK needs around 1 million more tech workers</strong> than it currently has. That's a once-in-a-generation shortage — which means if you build the skills, the doors are wide open. You don't need to have known you wanted this since you were 10. <strong style="color:var(--green)">They need people who can learn. That's not hype — that's data.</strong></p>
+  </div>
+
+  <div class="card reveal">
+    <div class="card-label">🌙 END OF DAY — Tuesday Review</div>
+    <label class="field-label">Rate today's vibe</label>
+    <div class="emoji-scale" id="tuesday-vibe">
+      <div class="emoji-opt" onclick="pickEmoji(this,'tuesday-vibe')"><span class="e">😴</span><span class="el">dead</span></div>
+      <div class="emoji-opt" onclick="pickEmoji(this,'tuesday-vibe')"><span class="e">😐</span><span class="el">fine</span></div>
+      <div class="emoji-opt" onclick="pickEmoji(this,'tuesday-vibe')"><span class="e">🙂</span><span class="el">good</span></div>
+      <div class="emoji-opt" onclick="pickEmoji(this,'tuesday-vibe')"><span class="e">😄</span><span class="el">great</span></div>
+      <div class="emoji-opt" onclick="pickEmoji(this,'tuesday-vibe')"><span class="e">🤩</span><span class="el">unreal</span></div>
+    </div>
+    <label class="field-label">Biggest "oh that's actually cool" moment of the day</label>
+    <textarea rows="2" placeholder="..."></textarea>
+    <label class="field-label">Something you want to Google when you get home</label>
+    <input type="text" placeholder="e.g. 'how to become a UX designer'..." />
+  </div>
+</section>
+
+<!-- ===== WEDNESDAY ===== -->
+<section class="section" id="wednesday">
+  <div class="section-header reveal">
+    <div class="day-pill brown">WED 1 JULY</div>
+    <h2 class="section-title">DAY <span>THREE</span><br>YOUR FUTURE</h2>
+  </div>
+
+  <div class="card reveal" style="border-color:var(--green-dark);">
+    <div class="card-label">🗓️ WEDNESDAY'S PLAN — 9:15am to 4pm</div>
+    <div class="timeline" style="margin-top:10px;">
+      <div class="timeline-item">
+        <div class="tl-label">9:15 – 10:00am</div>
+        <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:14px;font-weight:700;">📋 Project Management work experience</div>
+        <div style="color:#aaa;font-size:12px;margin-top:3px;">with Danielle Young &nbsp;·&nbsp; 📍 C23 Floor 3 South</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-label">10:00 – 10:30am</div>
+        <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:14px;font-weight:700;">☕ TechNExt 26 debrief</div>
+        <div style="color:#aaa;font-size:12px;margin-top:3px;">📍 Starbucks</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-label">10:30am – 12:00pm</div>
+        <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:14px;font-weight:700;">🔐 Security work experience</div>
+        <div style="color:#aaa;font-size:12px;margin-top:3px;">with Jade Hill &nbsp;·&nbsp; 📍 Security Labs, C23 Floor 0</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-label">12:00 – 1:00pm</div>
+        <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:14px;font-weight:700;">🍽️ Lunch</div>
+        <div style="color:#aaa;font-size:12px;margin-top:3px;">📍 Canteen</div>
+      </div>      <div class="timeline-item">        <div class="tl-label">2:00 – 3:00pm</div>        <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:14px;font-weight:700;">💼 Sales work experience</div>        <div style="color:#aaa;font-size:12px;margin-top:3px;">with Simon Purdon &nbsp;·&nbsp; 📍 C22 Floor 1 South Side (above Starbucks)</div>      </div>
+    </div>
+  </div>
+
+  <div class="card reveal">
+    <div class="card-label">🌅 Midweek check-in</div>
+    <p style="color:#aaa;font-size:13px;margin-bottom:16px;">You're halfway through. Let's check in properly.</p>
+    <label class="field-label">Has anything changed about how you see tech careers? What shifted?</label>
+    <textarea rows="3" placeholder="..."></textarea>
+    <label class="field-label">On a scale of 1–10, how into this week are you right now?</label>
+    <input type="number" min="1" max="10" placeholder="1–10" style="max-width:100px;" />
+    <label class="field-label">What's the best free snack / drink you've had so far? (critical data)</label>
+    <input type="text" placeholder="be specific" />
+  </div>
+
+  <div class="divider reveal">your path</div>
+
+  <div class="card green-border reveal">
+    <div class="card-label">📖 AFTER GCSEs — the options (with honest numbers)</div>
+    <p style="margin-bottom:16px;">No one tells you this stuff clearly. Here it is:</p>
+  </div>
+
+  <div class="grid-2 reveal">
+    <div class="card">
+      <div class="card-label">🎓 UNIVERSITY</div>
+      <div class="big-stat">£60k+</div>
+      <div class="big-stat-label">average debt at graduation</div>
+      <p style="margin-top:12px;font-size:12px;">But repayments are only 9% of earnings above ~£25k. On a £30k salary that's just £37.50/month. The debt doesn't feel big — but you also don't earn anything for 3+ years.</p>
+    </div>
+    <div class="card">
+      <div class="card-label">🔧 DEGREE APPRENTICESHIP</div>
+      <div class="big-stat" style="color:var(--green);">£0</div>
+      <div class="big-stat-label">debt. zero. none.</div>
+      <p style="margin-top:12px;font-size:12px;">You earn £20k–£28k WHILE getting a full degree. Sage, BT, IBM offer these. You graduate with the same qualification as a uni student — but with 4 years of experience and £0 owed.</p>
+    </div>
+  </div>
+
+  <div class="card reveal">
+    <div class="card-label">💰 the real maths — cumulative earnings by age 25</div>
+    <div style="margin-top:16px;">
+      <div style="margin-bottom:14px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+          <span style="font-size:12px;color:#aaa;">Apprentice (started age 16)</span>
+          <span style="color:var(--green);font-family:'Syne',sans-serif;font-weight:700;">~£216,000</span>
+        </div>
+        <div class="progress-bar-wrap"><div class="progress-bar" style="width:100%"></div></div>
+      </div>
+      <div style="margin-bottom:14px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+          <span style="font-size:12px;color:#aaa;">Degree Apprentice (started age 18)</span>
+          <span style="color:var(--green-mid);font-family:'Syne',sans-serif;font-weight:700;">~£162,000</span>
+        </div>
+        <div class="progress-bar-wrap"><div class="progress-bar" style="width:75%;background:var(--green-mid)"></div></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+          <span style="font-size:12px;color:#aaa;">Uni Graduate (started earning at 21)</span>
+          <span style="color:var(--muted);font-family:'Syne',sans-serif;font-weight:700;">~£72,000</span>
+        </div>
+        <div class="progress-bar-wrap"><div class="progress-bar" style="width:33%;background:var(--muted)"></div></div>
+      </div>
+    </div>
+    <p style="margin-top:16px;font-size:12px;color:var(--muted);">*estimates based on avg starting salaries. the point: starting earlier = more money by your mid-20s, regardless of route.</p>
+  </div>
+
+  <div class="joke-box reveal">
+    <div class="q">❓ What do you call a group of programmers?</div>
+    <div class="a">An argument. 👥 (They will debate the best approach to EVERYTHING forever. It's their love language.)</div>
+  </div>
+
+  <div class="card reveal">
+    <div class="card-label">✍️ PATH EXPLORER — answer honestly</div>
+    <label class="field-label">Which path sounds most appealing to you right now?</label>
+    <div class="choice-grid" id="path-choice">
+      <div class="choice-btn" onclick="pickChoice(this,'path-choice')">
+        <span class="choice-icon">🔧</span>
+        Apprenticeship at 16 — earn now
+      </div>
+      <div class="choice-btn" onclick="pickChoice(this,'path-choice')">
+        <span class="choice-icon">🏆</span>
+        Degree apprenticeship at 18 — best of both
+      </div>
+      <div class="choice-btn" onclick="pickChoice(this,'path-choice')">
+        <span class="choice-icon">🎓</span>
+        University — full experience
+      </div>
+      <div class="choice-btn" onclick="pickChoice(this,'path-choice')">
+        <span class="choice-icon">🤷</span>
+        Genuinely no idea yet — and that's fine
+      </div>
+    </div>
+    <label class="field-label">Why that one?</label>
+    <textarea rows="2" placeholder="..."></textarea>
+    <label class="field-label">What do your parents/guardians think you should do? (same? different?)</label>
+    <textarea rows="2" placeholder="No wrong answer — just curious..."></textarea>
+  </div>
+
+  <div class="fun-fact reveal">
+    <div class="label">💡 FUN FACT — Sage + Apprenticeships</div>
+    <p>Sage actually offers <strong>degree apprenticeships</strong> in software engineering. That means you could literally work here — get a degree — earn a salary — and owe nothing. One of the people you've met this week might have taken exactly that route. Worth asking!</p>
+  </div>
+
+  <div class="card reveal">
+    <div class="card-label">🎯 WEDNESDAY MISSION: "ASK ABOUT THE JOURNEY"</div>
+    <p style="color:#aaa;font-size:13px;margin-bottom:16px;">Find ONE person today and ask them: "How did you get into tech / this role?" Fill in what they said:</p>
+    <label class="field-label">Who did you ask?</label>
+    <input type="text" placeholder="name + role..." />
+    <label class="field-label">Their route in (uni, apprenticeship, bootcamp, something random?)</label>
+    <textarea rows="2" placeholder="..."></textarea>
+    <label class="field-label">One piece of advice they gave you</label>
+    <textarea rows="2" placeholder="write it down properly — you'll want this later"></textarea>
+  </div>
+
+  <div class="card reveal">
+    <div class="card-label">🌙 END OF DAY — Wednesday Review</div>
+    <label class="field-label">Rate today's vibe</label>
+    <div class="emoji-scale" id="wednesday-vibe">
+      <div class="emoji-opt" onclick="pickEmoji(this,'wednesday-vibe')"><span class="e">😴</span><span class="el">dead</span></div>
+      <div class="emoji-opt" onclick="pickEmoji(this,'wednesday-vibe')"><span class="e">😐</span><span class="el">fine</span></div>
+      <div class="emoji-opt" onclick="pickEmoji(this,'wednesday-vibe')"><span class="e">🙂</span><span class="el">good</span></div>
+      <div class="emoji-opt" onclick="pickEmoji(this,'wednesday-vibe')"><span class="e">😄</span><span class="el">great</span></div>
+      <div class="emoji-opt" onclick="pickEmoji(this,'wednesday-vibe')"><span class="e">🤩</span><span class="el">unreal</span></div>
+    </div>
+    <label class="field-label">Midweek confession: something you thought would be boring but wasn't</label>
+    <textarea rows="2" placeholder="..."></textarea>
+  </div>
+</section>
+
+<!-- ===== THURSDAY ===== -->
+<section class="section" id="thursday">
+  <div class="section-header reveal">
+    <div class="day-pill white">THU 2 JULY</div>
+    <h2 class="section-title">DAY <span>FOUR</span><br>THE DEEP DIVE</h2>
+  </div>
+
+  <div class="card reveal" style="border-color:var(--green-dark);">
+    <div class="card-label">🗓️ THURSDAY'S PLAN — 9:30am to 4pm</div>
+    <div class="timeline" style="margin-top:10px;">
+      <div class="timeline-item">
+        <div class="tl-label">9:30 – 11:30am</div>
+        <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:14px;font-weight:700;">💬 WebChat work experience</div>
+        <div style="color:#aaa;font-size:12px;margin-top:3px;">with Joey Kyne &nbsp;·&nbsp; 📍 C22 Reception</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-label">12:00 – 1:00pm</div>
+        <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:14px;font-weight:700;">🍽️ Lunch</div>
+        <div style="color:#aaa;font-size:12px;margin-top:3px;">📍 Canteen</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-label">1:00 – 3:00pm</div>
+        <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:14px;font-weight:700;">📦 Product Management work experience</div>
+        <div style="color:#aaa;font-size:12px;margin-top:3px;">with Mel Lisle &nbsp;·&nbsp; 📍 C23 Floor 3 South</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-label">3:00 – 4:00pm</div>
+        <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:14px;font-weight:700;">🏗️ Architecture work experience</div>
+        <div style="color:#aaa;font-size:12px;margin-top:3px;">with Chris Latimer &nbsp;·&nbsp; 📍 C23 Floor 3 South</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card reveal">
+    <div class="card-label">🌅 Morning — penultimate day energy</div>
+    <p style="color:#aaa;font-size:13px;margin-bottom:14px;">Last full day tomorrow. Time to get curious about the big stuff.</p>
+    <label class="field-label">What's one question about working in tech you still haven't got the answer to?</label>
+    <textarea rows="2" placeholder="Go find the answer today..."></textarea>
+  </div>
+
+  <div class="divider reveal">diversity in tech — real talk</div>
+
+  <div class="card green-border reveal">
+    <div class="card-label">📖 DIVERSITY IN TECH — why it actually matters</div>
+    <div class="grid-2" style="margin:16px 0;">
+      <div style="text-align:center;padding:16px;">
+        <div class="big-stat">26%</div>
+        <div class="big-stat-label">of UK tech workers are women (2024)</div>
+      </div>
+      <div style="text-align:center;padding:16px;">
+        <div class="big-stat" style="color:var(--red);">22%</div>
+        <div class="big-stat-label">of tech roles are held by people from ethnic minorities</div>
+      </div>
+    </div>
+    <p style="font-size:13px;color:#aaa;">This isn't just a fairness issue — it's a quality issue. When products are built by people who all think alike, they work worse for everyone else: voice assistants that struggle with certain accents, health apps that ignore half the population, facial recognition that fails on darker skin. <strong style="color:var(--white)">More kinds of people in the room = better products for everyone.</strong> Whoever you are, you're part of that.</p>
+  </div>
+
+  <div class="card reveal">
+    <div class="card-label">✍️ YOUR TAKE</div>
+    <label class="field-label">Do those numbers surprise you? Why / why not?</label>
+    <textarea rows="3" placeholder="Be real..."></textarea>
+    <label class="field-label">What's one thing a team could do to make someone — from any background — feel like they belong here?</label>
+    <textarea rows="3" placeholder="Honest space — no wrong answer"></textarea>
+  </div>
+
+  <div class="joke-box reveal">
+    <div class="q">❓ How many programmers does it take to change a light bulb?</div>
+    <div class="a">None. That's a hardware problem. 🔦 (hardware = physical stuff. software = digital stuff. now you know.)</div>
+  </div>
+
+  <div class="fun-fact reveal">
+    <div class="label">💡 FUN FACT — AI was at Sage before ChatGPT existed</div>
+    <p>In <strong>2016</strong>, Sage launched <strong>Pegg</strong> — described as one of the world's first accounting chatbots. ChatGPT came out in late 2022. Sage was playing with AI <strong>six years earlier</strong>. Just quietly doing it in Newcastle while everyone else caught up.</p>
+  </div>
+
+  <div class="divider reveal">salary explorer</div>
+
+  <div class="card reveal">
+    <div class="card-label">💸 DREAM ROLE SALARY EXPLORER</div>
+    <p style="color:#aaa;font-size:13px;margin-bottom:16px;">Pick a role that interests you and see what the earning potential looks like over a career. These are real UK market figures:</p>
+    <label class="field-label">Select a role</label>
+    <select id="salary-role" onchange="updateSalary()">
+      <option value="">— pick one —</option>
+      <option value="junior-dev,28000,60000,90000">Junior → Senior Software Developer</option>
+      <option value="ux,30000,55000,80000">UX / Product Designer</option>
+      <option value="data,32000,65000,95000">Data Analyst → Data Scientist</option>
+      <option value="cyber,35000,70000,100000">Cybersecurity Analyst</option>
+      <option value="ai,60000,90000,130000">AI / ML Engineer</option>
+      <option value="pm,40000,75000,120000">Product Manager</option>
+      <option value="eng-mgr,60000,100000,140000">Engineering Manager</option>
+    </select>
+    <div id="salary-display" style="margin-top:20px;display:none;">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px;">
+        <div class="card" style="text-align:center;margin-bottom:0;">
+          <div class="card-label muted">starting out</div>
+          <div class="salary-display" id="s-entry">£–</div>
+          <div class="salary-sub">0–2 years</div>
+        </div>
+        <div class="card" style="text-align:center;margin-bottom:0;">
+          <div class="card-label">mid level</div>
+          <div class="salary-display" id="s-mid">£–</div>
+          <div class="salary-sub">3–6 years</div>
+        </div>
+        <div class="card" style="text-align:center;margin-bottom:0;">
+          <div class="card-label">senior</div>
+          <div class="salary-display" id="s-senior">£–</div>
+          <div class="salary-sub">8+ years</div>
+        </div>
+      </div>
+      <p style="font-size:11px;color:var(--muted);margin-top:12px;">*UK market estimates. varies by company, location. london pays ~15–25% more. remote roles changing this fast.</p>
+    </div>
+    <label class="field-label">Does that change how you feel about this career path?</label>
+    <textarea rows="2" placeholder="..."></textarea>
+  </div>
+
+  <div class="card reveal">
+    <div class="card-label">🎯 THURSDAY MISSION: "THE CURIOSITY CHALLENGE"</div>
+    <p style="color:#aaa;font-size:13px;margin-bottom:16px;">Find answers to as many of these as you can today. Ask people. Look things up. Get curious.</p>
+    <ul class="checklist" id="curiosity-list">
+      <li onclick="toggleCheck(this)"><div class="check-box">✓</div><span>What product does YOUR team work on at Sage?</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box">✓</div><span>What does "cloud software" actually mean? (Ask someone to explain it to you)</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Find out if anyone on your team did an apprenticeship</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Ask what the most frustrating part of working in tech is</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Find someone in a senior role at Sage and ask them one question</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Ask someone: "what do you wish you'd known at 15 about your career?"</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Find out what "SaaS" stands for (it's relevant to Sage)</span></li>
+    </ul>
+    <label class="field-label" style="margin-top:16px;">Best answer you got today</label>
+    <textarea rows="3" placeholder="write it down properly..."></textarea>
+  </div>
+
+  <div class="card reveal">
+    <div class="card-label">🌙 END OF DAY — Thursday Review</div>
+    <label class="field-label">Rate today's vibe</label>
+    <div class="emoji-scale" id="thursday-vibe">
+      <div class="emoji-opt" onclick="pickEmoji(this,'thursday-vibe')"><span class="e">😴</span><span class="el">dead</span></div>
+      <div class="emoji-opt" onclick="pickEmoji(this,'thursday-vibe')"><span class="e">😐</span><span class="el">fine</span></div>
+      <div class="emoji-opt" onclick="pickEmoji(this,'thursday-vibe')"><span class="e">🙂</span><span class="el">good</span></div>
+      <div class="emoji-opt" onclick="pickEmoji(this,'thursday-vibe')"><span class="e">😄</span><span class="el">great</span></div>
+      <div class="emoji-opt" onclick="pickEmoji(this,'thursday-vibe')"><span class="e">🤩</span><span class="el">unreal</span></div>
+    </div>
+    <label class="field-label">What will you Google tonight?</label>
+    <input type="text" placeholder="..." />
+    <label class="field-label">Something you want to say about the week so far that doesn't fit any other question</label>
+    <textarea rows="3" placeholder="free space — say whatever..."></textarea>
+  </div>
+</section>
+
+<!-- ===== FRIDAY ===== -->
+<section class="section" id="friday">
+  <div class="section-header reveal">
+    <div class="day-pill">FRI 3 JULY</div>
+    <h2 class="section-title">DAY <span>FIVE</span><br>THE WRAP-UP</h2>
+  </div>
+
+  <div class="card reveal" style="border-color:var(--green-dark);">
+    <div class="card-label">🗓️ FRIDAY'S PLAN — last day!</div>
+    <div class="timeline" style="margin-top:10px;">
+      <div class="timeline-item">
+        <div class="tl-label">10:00 – 11:00am</div>
+        <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:14px;font-weight:700;">🚦 Automated Load Testing</div>
+        <div style="color:#aaa;font-size:12px;margin-top:3px;">with Darren Tingle &nbsp;·&nbsp; 📍 C23 Floor 3 South</div>
+      </div>
+      <div class="timeline-item">
+        <div class="tl-label">12:00 – 1:00pm</div>
+        <div style="color:var(--white);font-family:'Syne',sans-serif;font-size:14px;font-weight:700;">🍽️ Lunch</div>
+        <div style="color:#aaa;font-size:12px;margin-top:3px;">📍 Canteen</div>
+      </div>
+    </div>
+    <p style="color:var(--muted);font-size:12px;margin-top:14px;">A lighter day to finish — use the quieter moments to fill in any bits of this passport you didn't get to, and to head into <span class="hl">The Big Reflection</span> and your <span class="hl">certificate</span> below.</p>
+  </div>
+
+  <div class="card reveal">
+    <div class="card-label">🌅 Final morning check-in</div>
+    <label class="field-label">It's the last day. What's the one thing from this week you most want to remember?</label>
+    <textarea rows="2" placeholder="Don't overthink it — first thing that comes to mind..."></textarea>
+    <label class="field-label">Anyone you want to make sure you say thank you to before you leave?</label>
+    <input type="text" placeholder="names — go and do it, they'll appreciate it" />
+  </div>
+
+  <div class="card reveal">
+    <div class="card-label">🌙 END OF DAY — Friday Review</div>
+    <label class="field-label">Rate the whole week</label>
+    <div class="emoji-scale" id="friday-vibe">
+      <div class="emoji-opt" onclick="pickEmoji(this,'friday-vibe')"><span class="e">😴</span><span class="el">dead</span></div>
+      <div class="emoji-opt" onclick="pickEmoji(this,'friday-vibe')"><span class="e">😐</span><span class="el">fine</span></div>
+      <div class="emoji-opt" onclick="pickEmoji(this,'friday-vibe')"><span class="e">🙂</span><span class="el">good</span></div>
+      <div class="emoji-opt" onclick="pickEmoji(this,'friday-vibe')"><span class="e">😄</span><span class="el">great</span></div>
+      <div class="emoji-opt" onclick="pickEmoji(this,'friday-vibe')"><span class="e">🤩</span><span class="el">unreal</span></div>
+    </div>
+    <label class="field-label">One word for the whole week</label>
+    <input type="text" placeholder="just one..." />
+  </div>
+</section>
+
+<!-- ===== BINGO ===== -->
+<section class="section" id="bingo">
+  <div class="section-header reveal">
+    <div class="day-pill">ALL WEEK</div>
+    <h2 class="section-title">WORK EX <span>BINGO</span></h2>
+  </div>
+
+  <div class="card reveal">
+    <div class="card-label">🎰 STAMP IT WHEN IT HAPPENS — click to mark</div>
+    <p style="color:#aaa;font-size:13px;margin-bottom:20px;">Play this throughout the week. Tap a square when it happens. Get a full row and you've won absolutely nothing except the satisfaction. 🏆</p>
+    <div class="bingo-grid">
+      <div class="bingo-cell" onclick="bingoCellClick(this)">Someone said "synergy" without irony</div>
+      <div class="bingo-cell" onclick="bingoCellClick(this)">A meeting that could've been an email</div>
+      <div class="bingo-cell" onclick="bingoCellClick(this)">Free snacks or coffee</div>
+      <div class="bingo-cell" onclick="bingoCellClick(this)">Someone's computer had 47 browser tabs open</div>
+      <div class="bingo-cell" onclick="bingoCellClick(this)">Heard the word "agile" or "sprint"</div>
+      <div class="bingo-cell" onclick="bingoCellClick(this)">Someone used the phrase "circle back"</div>
+      <div class="bingo-cell free">FREE SQUARE<br>🌿</div>
+      <div class="bingo-cell" onclick="bingoCellClick(this)">Witnessed a technical problem being fixed</div>
+      <div class="bingo-cell" onclick="bingoCellClick(this)">Asked a question that impressed someone</div>
+      <div class="bingo-cell" onclick="bingoCellClick(this)">Found out someone's job exists that you'd never heard of</div>
+      <div class="bingo-cell" onclick="bingoCellClick(this)">Spotted the Sage green colour somewhere</div>
+      <div class="bingo-cell" onclick="bingoCellClick(this)">Heard someone mention AI/machine learning</div>
+      <div class="bingo-cell" onclick="bingoCellClick(this)">A video call where someone forgot they were on mute</div>
+      <div class="bingo-cell" onclick="bingoCellClick(this)">Someone explained their job and it took 5 minutes</div>
+      <div class="bingo-cell" onclick="bingoCellClick(this)">Overheard a conversation about customers</div>
+      <div class="bingo-cell" onclick="bingoCellClick(this)">Someone was visibly proud of something they built</div>
+    </div>
+    <label class="field-label" style="margin-top:20px;">Any bingo highlights? What happened when you stamped it?</label>
+    <textarea rows="3" placeholder="the details matter..."></textarea>
+  </div>
+</section>
+
+<!-- ===== CAREERS BIG REFLECTION ===== -->
+<section class="section" id="careers">
+  <div class="section-header reveal">
+    <div class="day-pill">END OF WEEK</div>
+    <h2 class="section-title">THE BIG <span>REFLECTION</span></h2>
+  </div>
+
+  <div class="card green-border reveal">
+    <div class="card-label">🎯 THE MAIN EVENT</div>
+    <p>You've seen it. You've heard it. You've asked awkward questions and survived. Now the real question:</p>
+    <div class="quote-fill" style="margin-top:20px;line-height:2;">
+      "The career that interests me most after this week is <br>
+      <input type="text" style="background:transparent;border:none;border-bottom:2px solid var(--green);color:var(--green);font-family:'Syne',sans-serif;font-weight:700;font-size:inherit;width:260px;outline:none;" placeholder="...fill this in..." />
+      <br>because it..."
+    </div>
+    <textarea rows="4" placeholder="explain why — be specific, use what you saw this week as evidence" style="margin-top:16px;"></textarea>
+  </div>
+
+  <div class="card reveal">
+    <div class="card-label">📊 RANK YOUR INTERESTS — drag to reorder (or just number them)</div>
+    <p style="color:#aaa;font-size:13px;margin-bottom:16px;">Number these 1–8 (1 = most interesting to you)</p>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div style="display:flex;align-items:center;gap:12px;background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:12px 16px;">
+        <input type="number" min="1" max="8" style="width:50px;flex-shrink:0;background:transparent;border:1px solid var(--border);padding:6px;text-align:center;" />
+        <span style="font-size:13px;">💻 Software Engineering / Coding</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:12px 16px;">
+        <input type="number" min="1" max="8" style="width:50px;flex-shrink:0;background:transparent;border:1px solid var(--border);padding:6px;text-align:center;" />
+        <span style="font-size:13px;">🎨 UX/UI Design</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:12px 16px;">
+        <input type="number" min="1" max="8" style="width:50px;flex-shrink:0;background:transparent;border:1px solid var(--border);padding:6px;text-align:center;" />
+        <span style="font-size:13px;">📊 Data / Analytics</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:12px 16px;">
+        <input type="number" min="1" max="8" style="width:50px;flex-shrink:0;background:transparent;border:1px solid var(--border);padding:6px;text-align:center;" />
+        <span style="font-size:13px;">🔐 Cybersecurity</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:12px 16px;">
+        <input type="number" min="1" max="8" style="width:50px;flex-shrink:0;background:transparent;border:1px solid var(--border);padding:6px;text-align:center;" />
+        <span style="font-size:13px;">🤖 AI / Machine Learning</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:12px 16px;">
+        <input type="number" min="1" max="8" style="width:50px;flex-shrink:0;background:transparent;border:1px solid var(--border);padding:6px;text-align:center;" />
+        <span style="font-size:13px;">📦 Product Management</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:12px 16px;">
+        <input type="number" min="1" max="8" style="width:50px;flex-shrink:0;background:transparent;border:1px solid var(--border);padding:6px;text-align:center;" />
+        <span style="font-size:13px;">🤝 Sales / Marketing in Tech</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:12px 16px;">
+        <input type="number" min="1" max="8" style="width:50px;flex-shrink:0;background:transparent;border:1px solid var(--border);padding:6px;text-align:center;" />
+        <span style="font-size:13px;">💡 Something else entirely</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card reveal">
+    <div class="card-label">📝 THE FIVE BIG QUESTIONS — end of week edition</div>
+
+    <label class="field-label">1. What do you know now that you wish you'd known at the start of the week?</label>
+    <textarea rows="3" placeholder="..."></textarea>
+
+    <label class="field-label">2. Name one person you met this week who genuinely inspired you. What did they say or do?</label>
+    <textarea rows="3" placeholder="..."></textarea>
+
+    <label class="field-label">3. What surprised you most about what a real tech company looks like day-to-day?</label>
+    <textarea rows="3" placeholder="..."></textarea>
+
+    <label class="field-label">4. If you could change one thing about how tech is taught at school, what would it be?</label>
+    <textarea rows="3" placeholder="..."></textarea>
+
+    <label class="field-label">5. In one year from now, what's one thing you hope you've done as a result of this week?</label>
+    <textarea rows="3" placeholder="..."></textarea>
+  </div>
+
+  <div class="card reveal">
+    <div class="card-label">🗝️ MY TECH VOCAB — words I actually understand now</div>
+    <p style="color:#aaa;font-size:13px;margin-bottom:16px;">Write down 5 tech terms you can now actually explain to someone else. These are yours now.</p>
+    <div id="vocab-list">
+      <div style="display:flex;gap:10px;margin-bottom:10px;">
+        <input type="text" placeholder="Term e.g. API" style="flex:1;" />
+        <input type="text" placeholder="What it means in plain English" style="flex:2;" />
+      </div>
+      <div style="display:flex;gap:10px;margin-bottom:10px;">
+        <input type="text" placeholder="Term" style="flex:1;" />
+        <input type="text" placeholder="What it means" style="flex:2;" />
+      </div>
+      <div style="display:flex;gap:10px;margin-bottom:10px;">
+        <input type="text" placeholder="Term" style="flex:1;" />
+        <input type="text" placeholder="What it means" style="flex:2;" />
+      </div>
+      <div style="display:flex;gap:10px;margin-bottom:10px;">
+        <input type="text" placeholder="Term" style="flex:1;" />
+        <input type="text" placeholder="What it means" style="flex:2;" />
+      </div>
+      <div style="display:flex;gap:10px;">
+        <input type="text" placeholder="Term" style="flex:1;" />
+        <input type="text" placeholder="What it means" style="flex:2;" />
+      </div>
+    </div>
+  </div>
+
+  <div class="fun-fact reveal">
+    <div class="label">💡 A PARTING FACT</div>
+    <p>By 2030, the UK needs <strong>1 million more tech workers</strong> — companies are <em>actively scrambling</em> for people who can learn fast. You don't need to have known you wanted this at age 10. You can start learning for free today — CS50 (Harvard), freeCodeCamp, The Odin Project. The door is open. <strong style="color:var(--green)">You just walked through it this week.</strong></p>
+  </div>
+</section>
+
+<!-- ===== CERTIFICATE ===== -->
+<section class="section" id="cert">
+  <div class="section-header reveal">
+    <div class="day-pill">FRIDAY 3 JULY</div>
+    <h2 class="section-title">YOUR <span>CERT</span></h2>
+  </div>
+
+  <div class="card reveal" style="border-color:var(--green-mid);background:linear-gradient(135deg,rgba(0,255,107,0.05),rgba(0,70,12,0.1));text-align:center;padding:40px;">
+    <div style="display:inline-block;border:2px solid var(--green);border-radius:16px;padding:40px 48px;max-width:560px;width:100%;">
+      <div style="font-size:11px;letter-spacing:0.3em;color:var(--green-mid);font-family:'Syne',sans-serif;margin-bottom:16px;">SAGE — WORK EXPERIENCE 2026</div>
+      <div style="font-family:'Syne',sans-serif;font-size:13px;color:var(--muted);margin-bottom:8px;">THIS CERTIFIES THAT</div>
+      <div style="font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--green);margin:8px 0;">
+        <input type="text" style="background:transparent;border:none;border-bottom:2px solid var(--green);color:var(--green);font-family:'Syne',sans-serif;font-size:inherit;font-weight:800;text-align:center;width:280px;outline:none;text-transform:uppercase;" />
+      </div>
+      <div style="font-size:13px;color:#aaa;margin:16px 0;line-height:1.7;">
+        completed Sage Work Experience Week<br>
+        29 June – 3 July 2026<br>
+        and asked better questions than most adults do.
+      </div>
+      <div class="flow-line" style="justify-content:center;">
+        <div class="dot active"></div><div class="dash"></div>
+        <div class="dot active"></div><div class="dash"></div>
+        <div class="dot active"></div><div class="dash"></div>
+        <div class="dot active"></div><div class="dash"></div>
+        <div class="dot active"></div>
+      </div>
+      <div style="margin-top:20px;font-size:11px;color:var(--muted);letter-spacing:0.1em;">NEWCASTLE · EST. 1981 · 🌿 SAGE.COM</div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <label class="field-label">one sentence to future you — what do you want to remember about this week?</label>
+      <textarea rows="3" placeholder="write it like you mean it..." style="max-width:500px;margin:0 auto;display:block;text-align:left;"></textarea>
+    </div>
+  </div>
+
+  <div class="card reveal" style="margin-top:16px;">
+    <div class="card-label">🚀 NEXT STEPS — pick at least one</div>
+    <ul class="checklist" id="next-steps">
+      <li onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Sign up for CS50 — it's free, it's Harvard, it actually changes how you think: cs50.harvard.edu</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Try The Odin Project — a free, full curriculum that takes you from zero to building real websites: theodinproject.com</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Add one person you met this week on LinkedIn (ask them first — it's fine, they'll be flattered)</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Look up Sage's degree apprenticeship programme: search "Sage degree apprenticeship"</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Tell someone at home one thing you learned this week — you'll remember it better if you explain it</span></li>
+      <li onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Come back and finish any bits of this passport you didn't have time for</span></li>
+    </ul>
+  </div>
+
+  <div class="card reveal" style="text-align:center;padding:40px;">
+    <div style="font-size:48px;margin-bottom:12px;">🌿</div>
+    <div style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--green);margin-bottom:12px;">KNOCK DOWN BARRIERS.</div>
+    <p style="color:#aaa;font-size:13px;max-width:440px;margin:0 auto;">That's Sage's purpose. But it's also yours. You just spent a week in one of the most interesting industries on the planet. You showed up. You asked questions. You're already different because of it.</p>
+    <p style="color:var(--green);font-size:13px;margin-top:16px;font-family:'Syne',sans-serif;font-weight:700;">see you in tech. 🚀</p>
+  </div>
+</section>
+
+</div><!-- end container -->
+
+<div class="footer">
+  <div class="logo">SAGE 🌿</div>
+  <p>work experience passport — megan — june 2026</p>
+  <p style="margin-top:8px;opacity:0.5;">empowering people and businesses everywhere</p>
+</div>
+
+<script>
+  // === CHOICE BUTTONS ===
+  function pickChoice(el, groupId) {
+    document.querySelectorAll(`#${groupId} .choice-btn`).forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+
+  // === EMOJI SCALE ===
+  function pickEmoji(el, groupId) {
+    document.querySelectorAll(`#${groupId} .emoji-opt`).forEach(b => b.classList.remove('picked'));
+    el.classList.add('picked');
+  }
+
+  // === CHECKLIST ===
+  function toggleCheck(li) {
+    const box = li.querySelector('.check-box');
+    box.classList.toggle('checked');
+  }
+
+  // === BINGO ===
+  function bingoCellClick(el) {
+    if (el.classList.contains('free')) return;
+    el.classList.toggle('stamped');
+  }
+
+  // === SALARY EXPLORER ===
+  function updateSalary() {
+    const sel = document.getElementById('salary-role');
+    const val = sel.value;
+    if (!val) { document.getElementById('salary-display').style.display = 'none'; return; }
+    const parts = val.split(',');
+    const fmt = n => '£' + parseInt(n).toLocaleString();
+    document.getElementById('s-entry').textContent = fmt(parts[1]);
+    document.getElementById('s-mid').textContent = fmt(parts[2]);
+    document.getElementById('s-senior').textContent = fmt(parts[3]);
+    document.getElementById('salary-display').style.display = 'block';
+  }
+
+  // === SCROLL REVEAL ===
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // === NAV ACTIVE STATE ===
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav a');
+
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const link = document.querySelector(`.nav a[href="#${e.target.id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sections.forEach(s => navObserver.observe(s));
+</script>
+
+<!-- ===== FLOATING CONTROLS (shown after unlock) ===== -->
+<div id="passport-controls" class="no-print" style="display:none;">
+  <span id="save-indicator">saved</span>
+  <button onclick="exportData()" title="Download your answers as a backup file">⬇ export</button>
+  <label class="import-label" title="Load answers from a backup file">⬆ import
+    <input type="file" id="import-file" accept="application/json" onchange="importData(event)" hidden>
+  </label>
+  <button onclick="lockNow()" title="Lock and switch user">🔒 lock</button>
+</div>
+
+<script>
+  /* =====================================================================
+     PASSWORD GATE + PER-USER PERSISTENCE
+     ---------------------------------------------------------------------
+     IMPORTANT: this is light obscurity, NOT real security. Anyone who
+     views the page source can read these passwords, and a GitHub Pages
+     site is publicly readable. Don't store anything truly sensitive here.
+
+     To set passwords: edit the PROFILES object below. Each entry is
+        "what the student types"  :  "their private save slot"
+     Give each student a different password + slot so their answers stay
+     separate. Data is saved in this browser's localStorage per slot.
+     ===================================================================== */
+  const PROFILES = {
+    "megan2026": "megan",
+    "demo":      "demo"
+  };
+
+  const STORAGE_PREFIX = "sage-passport:v1:";
+  let currentProfile = null;
+  let unlocked = false;
+  let savingWired = false;
+  let saveTimer = null;
+
+  function tryUnlock() {
+    const val = (document.getElementById('lock-input').value || '').trim().toLowerCase();
+    const prof = PROFILES[val];
+    if (!prof) {
+      document.getElementById('lock-error').classList.add('show');
+      return;
+    }
+    currentProfile = prof;
+    unlocked = true;
+    document.getElementById('lock-error').classList.remove('show');
+    document.getElementById('lock-screen').classList.add('hidden');
+    document.body.classList.remove('locked');
+    document.getElementById('passport-controls').style.display = 'flex';
+    restoreState();
+    wireSaving();
+  }
+
+  function lockNow() {
+    if (unlocked) saveState();
+    unlocked = false;
+    currentProfile = null;
+    document.getElementById('passport-controls').style.display = 'none';
+    document.getElementById('lock-screen').classList.remove('hidden');
+    document.body.classList.add('locked');
+    const inp = document.getElementById('lock-input');
+    inp.value = '';
+    inp.focus();
+  }
+
+  function storageKey() { return STORAGE_PREFIX + currentProfile; }
+
+  // All user-fillable fields except the lock screen + file inputs
+  function savableFields() {
+    return Array.from(document.querySelectorAll('input, textarea, select'))
+      .filter(el => !el.closest('#lock-screen') && el.type !== 'file');
+  }
+
+  function activeIndices(selector, activeClass) {
+    const out = [];
+    document.querySelectorAll(selector).forEach((el, i) => {
+      if (el.classList.contains(activeClass)) out.push(i);
+    });
+    return out;
+  }
+
+  function setActiveByIndices(selector, activeClass, indices) {
+    const set = new Set(indices || []);
+    document.querySelectorAll(selector).forEach((el, i) => {
+      el.classList.toggle(activeClass, set.has(i));
+    });
+  }
+
+  function collectState() {
+    const fields = {};
+    savableFields().forEach((el, i) => { if (el.value) fields[i] = el.value; });
+    return {
+      fields: fields,
+      choices: activeIndices('.choice-btn', 'selected'),
+      emojis:  activeIndices('.emoji-opt', 'picked'),
+      checks:  activeIndices('.check-box', 'checked'),
+      bingo:   activeIndices('.bingo-cell', 'stamped'),
+      stars:   activeIndices('.star', 'lit'),
+      savedAt: Date.now()
+    };
+  }
+
+  function clearAllFields() {
+    savableFields().forEach(el => { el.value = ''; });
+    setActiveByIndices('.choice-btn', 'selected', []);
+    setActiveByIndices('.emoji-opt', 'picked', []);
+    setActiveByIndices('.check-box', 'checked', []);
+    setActiveByIndices('.bingo-cell', 'stamped', []);
+    setActiveByIndices('.star', 'lit', []);
+    if (typeof updateSalary === 'function') { try { updateSalary(); } catch (e) {} }
+  }
+
+  function applyState(s) {
+    if (!s) return;
+    const flds = savableFields();
+    if (s.fields) {
+      Object.keys(s.fields).forEach(k => { if (flds[k] !== undefined) flds[k].value = s.fields[k]; });
+    }
+    setActiveByIndices('.choice-btn', 'selected', s.choices);
+    setActiveByIndices('.emoji-opt', 'picked', s.emojis);
+    setActiveByIndices('.check-box', 'checked', s.checks);
+    setActiveByIndices('.bingo-cell', 'stamped', s.bingo);
+    setActiveByIndices('.star', 'lit', s.stars);
+    if (typeof updateSalary === 'function') { try { updateSalary(); } catch (e) {} }
+  }
+
+  function saveState() {
+    if (!unlocked) return;
+    try {
+      localStorage.setItem(storageKey(), JSON.stringify(collectState()));
+      flashSaved();
+    } catch (e) { console.error('Save failed', e); }
+  }
+
+  function restoreState() {
+    clearAllFields();
+    try {
+      const raw = localStorage.getItem(storageKey());
+      if (raw) applyState(JSON.parse(raw));
+    } catch (e) { console.error('Restore failed', e); }
+  }
+
+  function scheduleSave() {
+    if (!unlocked) return;
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(saveState, 250);
+  }
+
+  function wireSaving() {
+    if (savingWired) return;
+    savingWired = true;
+    document.addEventListener('input', scheduleSave);
+    document.addEventListener('change', scheduleSave);
+    document.addEventListener('click', scheduleSave);
+  }
+
+  function flashSaved() {
+    const el = document.getElementById('save-indicator');
+    if (!el) return;
+    el.textContent = 'saved ✓';
+    el.classList.add('flash');
+    clearTimeout(flashSaved._t);
+    flashSaved._t = setTimeout(() => { el.classList.remove('flash'); el.textContent = 'saved'; }, 1200);
+  }
+
+  function exportData() {
+    if (!unlocked) return;
+    const blob = new Blob([JSON.stringify(collectState(), null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'passport-' + currentProfile + '.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(a.href);
+  }
+
+  function importData(evt) {
+    const file = evt.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const data = JSON.parse(reader.result);
+        clearAllFields();
+        applyState(data);
+        saveState();
+      } catch (e) { alert('Sorry — that file could not be read.'); }
+    };
+    reader.readAsText(file);
+    evt.target.value = '';
+  }
+
+  // Init: focus the password box and allow Enter to submit
+  (function initLock() {
+    const inp = document.getElementById('lock-input');
+    if (inp) {
+      inp.addEventListener('keydown', e => { if (e.key === 'Enter') tryUnlock(); });
+      inp.focus();
+    }
+  })();
+</script>
+
+</body>
+</html>
