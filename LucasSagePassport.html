@@ -124,7 +124,7 @@
     footer { padding:35px 0 90px; color:var(--muted); font-size:11px; }
     @media(max-width:760px) { .grid,.grid.three,.ladder,.copilot-grid,.jira-fields { grid-template-columns:1fr; } .section { padding:48px 0; } .cover { min-height:auto; } .cover-art { position:static; display:block; width:100%; max-width:320px; margin:6px auto 18px; } h1 { font-size:clamp(31px,8vw,50px); letter-spacing:-.03em; overflow-wrap:anywhere; } .pill { max-width:100%; white-space:normal; overflow-wrap:anywhere; } .cover-actions .button { width:100%; max-width:100%; text-align:center; overflow-wrap:anywhere; } .save-bar { left:10px; right:10px; justify-content:center; } }
     @media(max-width:430px) { .bingo-cell { min-height:100px; padding:7px; font-size:10px; } .vibe-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
-    @media print { @page { size:A4; margin:12mm; } html { scroll-behavior:auto; } body { background:#fff; color:#111; font-size:10px; } .cover { min-height:auto; background:#fff; padding:10px 0 20px; } h1,h2,h2 span,.eyebrow,.card-label,.phase-head .when,.rung::before { color:#111; } p,.compact,.cover-note,.field label,.progress-text { color:#333; } .nav,.save-bar,.skip,.cover-actions,.screen-only,.cover-art,.spot-art { display:none !important; } .print-only { display:block; } .section { padding:18px 0; border-color:#bbb; } .card,.rung,.note,.aside-box,.bingo-cell,.field input,.field textarea,.field select,pre { background:#fff; color:#111; border-color:#aaa; break-inside:avoid; } .grid,.grid.three,.ladder,.copilot-grid { gap:8px; } .card { padding:12px; } .task input { accent-color:#111; } .example-prompt { background:#fff; color:#111; border-color:#00A159; } .bingo-cell.free { background:#fff; color:#111; } .bingo-cell:has(input:checked) { background:#eee; color:#111; border-color:#666; } footer { padding:15px 0; } a { color:#111; } }
+    @media print { @page { size:A4; margin:12mm; } html { scroll-behavior:auto; } body { background:#fff; color:#111; font-size:10px; } .cover { min-height:auto; background:#fff; padding:10px 0 20px; } h1,h2,h2 span,.eyebrow,.card-label,.phase-head .when,.rung::before { color:#111; } p,.compact,.cover-note,.field label,.progress-text { color:#333; } .nav,.save-bar,.skip,.cover-actions,.screen-only,.cover-art,.spot-art { display:none !important; } .print-only { display:block; } .section { padding:18px 0; border-color:#bbb; } .card,.rung,.note,.aside-box,.bingo-cell,.field input,.field textarea,.field select,pre { background:#fff; color:#111; border-color:#aaa; break-inside:avoid; } .grid,.grid.three,.ladder,.copilot-grid { gap:8px; } .card { padding:12px; } .task input { accent-color:#111; } .example-prompt { background:#fff; color:#111; border-color:#00A159; } .bingo-cell.free { background:#fff; color:#111; } .bingo-cell:has(input:checked) { background:#eee; color:#111; border-color:#666; } footer { padding:15px 0; } a,.feedback { color:#111; } }
   </style>
 </head>
 <body>
@@ -194,7 +194,23 @@
       </div>
     </article>
 <article class="card practice-card"><div class="card-label">1. Glossary flashcards</div><h3>Know the terms</h3><div class="screen-only"><p id="flash-count" aria-live="polite"></p><button class="small-button" type="button" id="flash-card" aria-label="Flip flashcard"></button><p id="flash-face"></p><div class="choice-row"><button type="button" id="flash-again">Again</button><button type="button" id="flash-known">Got it</button></div></div><div class="print-only"><p>Explain: SBX, INT, PRD, L1, L2, SLA, ITP, SFCE, AFNOR, e-invoicing, MCP, PR, MFA, API, JSON and SSO.</p></div></article>
-<article class="card practice-card"><div class="card-label">2. Status code quiz</div><h3>What does this code tell you?</h3><div class="screen-only" id="status-game"></div><div class="print-only"><p>What do 200, 201, 400, 401, 403, 404, 429 and 500 mean? What would you check next?</p></div></article>
+<article class="card practice-card"><div class="card-label">2. HTTP status codes</div><h3>Read the code. Choose the next check.</h3>
+  <p class="compact">HTTP codes tell you how a request went. Start with the first digit: 2xx means success, 4xx points to a request or access problem, and 5xx points to a server problem. The code is a clue, not the full diagnosis.</p>
+  <label class="task"><input type="checkbox" id="status-video-watched" data-save data-progress><span>Watch <a href="https://youtu.be/nb0xQUcxVj4?si=0Kq2vG_xL0KZEP8s" target="_blank" rel="noopener noreferrer">the video ↗</a>, then try the questions below.</span></label>
+  <div class="grid" style="margin-top:16px;">
+    <div class="exercise"><h4>4xx · check the request</h4><p><strong>400</strong> Bad Request: check the input.</p><p><strong>401</strong> Unauthorised: check authentication.</p><p><strong>403</strong> Forbidden: check permission.</p><p><strong>404</strong> Not Found: check the path or resource.</p><p><strong>408</strong> Request Timeout: the server waited too long for the request.</p><p><strong>429</strong> Too Many Requests: check the request rate and any retry guidance.</p></div>
+    <div class="exercise"><h4>5xx · check the service</h4><p><strong>500</strong> Internal Server Error: something unexpected happened on the server.</p><p><strong>502</strong> Bad Gateway: a gateway got a bad response from another server.</p><p><strong>503</strong> Service Unavailable: the service cannot handle the request right now.</p><p><strong>504</strong> Gateway Timeout: a gateway did not get a response in time.</p></div>
+  </div>
+  <p class="compact">For the full list, use the <a href="https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml" target="_blank" rel="noopener noreferrer">IANA HTTP status code registry ↗</a>.</p>
+  <div class="exercise"><h4>Quick questions</h4><p class="compact">Choose an answer. You can change it after reading the feedback.</p>
+    <div class="field"><label for="status-basic-1">Which code family usually means success?</label><select id="status-basic-1" data-save><option value="">Choose one</option><option value="2xx">2xx</option><option value="4xx">4xx</option><option value="5xx">5xx</option></select><p class="feedback" id="status-basic-1-feedback" role="status"></p></div>
+    <div class="field"><label for="status-basic-2">You see a 404. What is a sensible first check?</label><select id="status-basic-2" data-save><option value="">Choose one</option><option value="path">Check the path or resource</option><option value="rate">Send requests faster</option><option value="gateway">Restart the gateway</option></select><p class="feedback" id="status-basic-2-feedback" role="status"></p></div>
+    <div class="field"><label for="status-basic-3">You see a 429. What might you need to check?</label><select id="status-basic-3" data-save><option value="">Choose one</option><option value="rate">The request rate and retry guidance</option><option value="path">Whether the path exists</option><option value="permission">Whether you have permission</option></select><p class="feedback" id="status-basic-3-feedback" role="status"></p></div>
+    <div class="field"><label for="status-basic-4">You see a 503. What does it tell you?</label><select id="status-basic-4" data-save><option value="">Choose one</option><option value="service">The service cannot handle the request right now</option><option value="success">The request succeeded</option><option value="not-found">The resource was not found</option></select><p class="feedback" id="status-basic-4-feedback" role="status"></p></div>
+    <p id="status-basics-score" class="feedback" role="status">Answer the four quick questions.</p>
+  </div>
+  <div class="exercise"><h4>Code meaning quiz</h4><div class="screen-only" id="status-game"></div><div class="print-only"><p>What do 200, 201, 202, 400, 401, 403, 404, 429, 500 and 503 mean? What would you check next?</p></div></div>
+</article>
 <article class="card practice-card"><div class="card-label">3. Safe to paste into AI?</div><h3>Sort the examples</h3><div class="screen-only" id="safe-game"></div><div class="print-only"><p>Decide which can go in an approved AI tool: a made-up JSON sample; a partner API key; a ticket screenshot with a customer name; a public W3Schools page; a synthetic error message; a live invoice; a generic question about HTTP; a colleague's private HR note.</p></div></article>
 <article class="card practice-card"><div class="card-label">4. Who do I go to?</div><h3>Choose a first stop</h3><p class="compact">Routes vary by issue and team. Check with your mentor before acting on a real case.</p><div class="screen-only" id="routing-game"></div><div class="print-only"><p>Who would you ask first for a basic request, a complex support issue, an environment issue, a product decision, a technical defect or your learning plan?</p></div></article>
 <article class="card practice-card"><div class="card-label">5. Better reply</div><h3>Choose the helpful reply</h3><div class="screen-only" id="reply-game"></div><div class="print-only"><p>Write a friendly next step for a fictional partner who is waiting for an update, cannot understand an error or has had to repeat their issue.</p></div></article>
@@ -390,6 +406,21 @@
         addText(box,'p','HTTP '+q.code+': '+(choice===q.answer?'Correct.':'Try again later.'));addText(box,'p',q.why,'feedback');
         box.appendChild(button('Next question',next));
       }
+      var statusBasics=[
+        ['status-basic-1','2xx','2xx means success.'],
+        ['status-basic-2','path','A 404 means the resource was not found, so check the path or resource.'],
+        ['status-basic-3','rate','A 429 means too many requests. Check the rate and any retry guidance.'],
+        ['status-basic-4','service','A 503 means the service cannot handle the request right now.']
+      ];
+      function renderStatusBasics() {
+        var answered=0, correct=0;
+        statusBasics.forEach(function(item){
+          var value=node(item[0]).value, feedback=node(item[0]+'-feedback');
+          if(value){answered++;if(value===item[1])correct++;}
+          feedback.textContent=value?(value===item[1]?'Correct. ':'Not quite. ')+item[2]:'';
+        });
+        node('status-basics-score').textContent=answered===4?correct+' of 4 correct. You can change any answer.':answered?correct+' of '+answered+' correct so far. Try all four.':'Answer the four quick questions.';
+      }
       var safeItems=[
         ['A made-up JSON sample',true,'Fictional data made for practice is fine in an approved tool.'],
         ['A partner API key',false,'Never paste credentials or keys into an AI tool.'],
@@ -478,11 +509,12 @@
         node('challenge-result').textContent='Try: '+picked.label;
         complete('challenge');
       });
-      function renderAll(){renderFlash();renderStatus();renderSafe();renderRouting();renderReply();renderJson();renderTriage();node('challenge-result').textContent=practice.challenge.picked?'Try: '+practice.challenge.picked:'';}
+      function renderAll(){renderFlash();renderStatus();renderStatusBasics();renderSafe();renderRouting();renderReply();renderJson();renderTriage();node('challenge-result').textContent=practice.challenge.picked?'Try: '+practice.challenge.picked:'';}
       try { var previous=localStorage.getItem(key); if(previous)apply(JSON.parse(previous)); else renderAll(); }
       catch(error){status.textContent='save unavailable; export a copy';renderAll();}
       progress();
       fields.forEach(function(field){field.addEventListener('input',schedule);field.addEventListener('change',schedule);});
+      statusBasics.forEach(function(item){node(item[0]).addEventListener('change',renderStatusBasics);});
       node('export-button').addEventListener('click',function(){
         clearTimeout(timer);save();
         var url=URL.createObjectURL(new Blob([JSON.stringify(state(),null,2)],{type:'application/json'}));
