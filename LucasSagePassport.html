@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lucas's Sage Enablement Passport</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap');
+    :root { --green:#00ff6b; --green-mid:#00a159; --black:#0a0a0a; --dark:#111; --card:#161616; --white:#f5f5f5; --muted:#aaa; --border:#303030; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:78px; }
+    body { margin:0; background:var(--black); color:var(--white); font:14px/1.65 'Space Mono',monospace; }
+    a { color:var(--green); }
+    a:hover { text-decoration:none; }
+    button, input, textarea { font:inherit; }
+    button { cursor:pointer; }
+    :focus-visible { outline:3px solid var(--green); outline-offset:3px; }
+    .skip { position:absolute; top:-100px; left:12px; z-index:30; padding:8px 12px; background:var(--green); color:var(--black); }
+    .skip:focus { top:12px; }
+    h1,h2,h3,.eyebrow,.pill,.nav a,.card-label { font-family:Syne,sans-serif; text-transform:uppercase; letter-spacing:.05em; }
+    h1,h2,h3,p { margin-top:0; }
+    h2 { font-size:clamp(29px,5vw,46px); line-height:1.08; }
+    h2 span { color:var(--green); }
+    h3 { font-size:17px; line-height:1.3; }
+    p { color:#ddd; }
+    .wrap { max-width:1060px; padding:0 22px; margin:auto; }
+    .cover { min-height:72vh; padding:80px 0 58px; display:flex; align-items:center; background:radial-gradient(circle at 72% 35%,rgba(0,255,107,.1),transparent 37%),var(--dark); border-bottom:1px solid var(--border); }
+    .cover .wrap { width:100%; min-width:0; }
+    .pill { display:inline-block; border-radius:999px; padding:6px 14px; background:var(--green); color:var(--black); font-size:11px; font-weight:800; }
+    h1 { margin:22px 0 15px; color:var(--green); font-size:clamp(48px,10vw,98px); line-height:.94; font-weight:800; }
+    .subtitle { font:600 clamp(16px,2.5vw,22px)/1.35 Syne,sans-serif; max-width:640px; }
+    .meta { color:var(--green-mid); font-size:12px; letter-spacing:.08em; }
+    .cover-actions { display:flex; flex-wrap:wrap; gap:12px; margin:30px 0; }
+    .button { display:inline-block; border:1px solid var(--green); border-radius:8px; padding:10px 16px; background:var(--green); color:var(--black); text-decoration:none; font-weight:700; }
+    .button.secondary { background:transparent; color:var(--green); }
+    .button:hover { filter:brightness(.87); }
+    .cover-note { max-width:680px; color:var(--muted); font-size:12px; }
+    .nav { position:sticky; top:0; z-index:20; display:flex; gap:6px; overflow-x:auto; background:rgba(10,10,10,.96); border-bottom:1px solid var(--border); padding:10px max(18px,calc((100vw - 1040px)/2)); }
+    .nav a { white-space:nowrap; text-decoration:none; color:var(--muted); border-radius:999px; padding:7px 12px; font-size:11px; }
+    .nav a:hover,.nav a:focus-visible { color:var(--black); background:var(--green); }
+    .section { padding:66px 0; border-bottom:1px solid var(--border); }
+    .section-heading { max-width:780px; margin-bottom:24px; }
+    .eyebrow { color:var(--green); font-size:11px; font-weight:800; margin-bottom:10px; }
+    .lead { font-size:15px; }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+    .grid.three { grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .card { padding:24px; background:var(--card); border:1px solid var(--border); border-radius:16px; min-width:0; }
+    .card.accent { border-color:#006a35; }
+    .card-label { color:var(--green); font-size:11px; font-weight:800; margin-bottom:10px; }
+    .card p:last-child { margin-bottom:0; }
+    .compact { font-size:12px; color:var(--muted); }
+    .link-list { display:grid; gap:10px; padding:0; list-style:none; margin:14px 0 0; }
+    .link-list li { border-top:1px solid var(--border); padding-top:10px; }
+    .phase { margin-bottom:18px; }
+    .phase-head { display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px; }
+    .phase-head .when { color:var(--green); font-size:11px; }
+    .phase h3 { margin-bottom:4px; }
+    .task-list { display:grid; gap:11px; margin:15px 0; }
+    .task { display:flex; align-items:flex-start; gap:10px; cursor:pointer; }
+    .task input { flex:0 0 auto; width:18px; height:18px; accent-color:var(--green); margin:3px 0 0; }
+    .task span { flex:1; }
+    .prompt { margin-top:16px; padding:13px 15px; border-left:3px solid var(--green); background:var(--dark); color:#ddd; font-size:12px; }
+    .field { display:grid; gap:6px; margin:14px 0 0; }
+    .field label { font-size:11px; color:var(--muted); }
+    .field input,.field textarea { width:100%; color:var(--white); background:var(--dark); border:1px solid #444; border-radius:8px; padding:10px 12px; }
+    .field textarea { resize:vertical; min-height:84px; }
+    .field input:focus,.field textarea:focus { border-color:var(--green); }
+    .meeting .task-list { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .meeting .task { font-size:12px; }
+    .meeting .task input { width:16px; height:16px; }
+    .meeting .field { margin-top:10px; }
+    .ladder { counter-reset:step; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+    .rung { border:1px solid var(--border); border-radius:12px; padding:17px; background:var(--dark); }
+    .rung::before { counter-increment:step; content:'0' counter(step); display:block; color:var(--green); font-weight:700; margin-bottom:8px; }
+    .rung strong { font-family:Syne,sans-serif; text-transform:uppercase; }
+    .rung p { font-size:12px; margin:8px 0 0; color:var(--muted); }
+    .progress-box { max-width:440px; }
+    .progress-track { height:9px; border:1px solid #326548; border-radius:999px; overflow:hidden; background:var(--dark); }
+    .progress-fill { width:0; height:100%; background:var(--green); transition:width .2s ease; }
+    .progress-text { font-size:11px; color:var(--muted); margin:7px 0 0; }
+    .note { border:1px solid #6b5120; background:#241d11; border-radius:12px; padding:15px 18px; font-size:12px; color:#eee; }
+    .save-bar { position:fixed; right:15px; bottom:15px; z-index:25; display:flex; flex-wrap:wrap; gap:7px; align-items:center; border:1px solid #34553d; background:#111; box-shadow:0 8px 30px #0008; border-radius:12px; padding:9px; }
+    .save-bar button,.save-bar label { border:1px solid #4a6c53; background:#173d24; color:var(--green); border-radius:7px; padding:7px 10px; font-size:11px; cursor:pointer; }
+    #save-status { color:var(--muted); font-size:10px; padding:0 7px; }
+    footer { padding:35px 0 90px; color:var(--muted); font-size:11px; }
+    @media(max-width:760px) { .grid,.grid.three,.ladder { grid-template-columns:1fr; } .section { padding:48px 0; } .cover { min-height:auto; } h1 { font-size:clamp(31px,8vw,50px); letter-spacing:-.03em; overflow-wrap:anywhere; } .pill { max-width:100%; white-space:normal; overflow-wrap:anywhere; } .cover-actions .button { width:100%; max-width:100%; text-align:center; overflow-wrap:anywhere; } .save-bar { left:10px; right:10px; justify-content:center; } }
+    @media print { @page { size:A4; margin:12mm; } html { scroll-behavior:auto; } body { background:#fff; color:#111; font-size:10px; } .cover { min-height:auto; background:#fff; padding:10px 0 20px; } h1,h2,h2 span,.eyebrow,.card-label,.phase-head .when,.rung::before { color:#111; } p,.compact,.cover-note,.field label,.progress-text { color:#333; } .nav,.save-bar,.skip,.cover-actions { display:none !important; } .section { padding:18px 0; border-color:#bbb; } .card,.rung,.note,.field input,.field textarea { background:#fff; color:#111; border-color:#aaa; break-inside:avoid; } .grid,.grid.three,.ladder { gap:8px; } .card { padding:12px; } .task input { accent-color:#111; } footer { padding:15px 0; } a { color:#111; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#start">Skip to content</a>
+  <header class="cover" id="top"><div class="wrap">
+    <span class="pill">🌿 Sage Domain Services · Enablement</span>
+    <h1>LUCAS'S<br>PASSPORT</h1>
+    <p class="subtitle">A practical route from your first week to confident, independent work.</p>
+    <p class="meta">APPRENTICE ENABLEMENT ENGINEER · STARTING 5 OCTOBER 2026</p>
+    <div class="cover-actions"><a class="button" href="#start">Start here →</a><a class="button secondary" href="https://confluence.sage.com/spaces/SFLOC/pages/916586929/Lucas" target="_blank" rel="noopener noreferrer">Open Lucas's Confluence hub ↗</a></div>
+    <div class="progress-box" aria-label="Passport activity progress"><div class="progress-track"><div class="progress-fill" id="progress-fill" role="progressbar" aria-label="Activities completed" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div><p class="progress-text" id="progress-text">0 activities completed</p></div>
+    <p class="cover-note">Tick activities as you do them. Your answers save in this browser; use Export to keep a backup. Training scores, course dates and the daily learning log belong in Confluence.</p>
+  </div></header>
+
+  <nav class="nav" aria-label="Passport sections"><a href="#start">Start</a><a href="#route">Your route</a><a href="#people">People</a><a href="#practice">Independence</a><a href="#reflection">Reflect</a><a href="#next">Next steps</a></nav>
+  <main class="wrap">
+    <section class="section" id="start">
+      <div class="section-heading"><div class="eyebrow">Before you begin</div><h2>MAKE IT <span>YOURS</span></h2><p class="lead">Use this page to turn learning into conversations and real work. Move at a steady pace; agree changes with your mentor when access or a task is delayed.</p></div>
+      <div class="grid">
+        <div class="card accent"><div class="card-label">Your three places</div><h3>Know where to go</h3><ul class="link-list"><li><strong>First Month Workbook</strong><br><span class="compact">Weeks 1–4: everyday habits, guided triage and access requests, reflection, and sign-off.</span></li><li><strong><a href="https://confluence.sage.com/spaces/SFLOC/pages/916586929/Lucas" target="_blank" rel="noopener noreferrer">Lucas's Confluence hub ↗</a></strong><br><span class="compact">Open “Enablement Onboarding Delivery” for scores and target dates, the self-learning pages for courses, and “Weekly Plan and Learning Log” for daily entries.</span></li><li><strong>This passport</strong><br><span class="compact">Choose a next action, book introductions, capture a safe learning note, and check when you can do more on your own.</span></li></ul></div>
+        <div class="card"><div class="card-label">Get into the rhythm</div><h3>Pick one, do one, log one</h3><p class="compact">Try this once, then repeat it each week using the Confluence plan and log.</p><div class="task-list"><label class="task"><input type="checkbox" id="rhythm-read" data-save data-progress><span>Read the current week in Confluence and choose one small task.</span></label><label class="task"><input type="checkbox" id="rhythm-ask" data-save data-progress><span>Ask your mentor which real or sandbox task is suitable.</span></label><label class="task"><input type="checkbox" id="rhythm-log" data-save data-progress><span>Do it, get feedback, and add a line to the Confluence learning log.</span></label></div><div class="prompt">Stuck for 30 minutes? Ask Adele. Include what you tried, what happened, and what you need next.</div></div>
+      </div>
+      <p class="note" style="margin-top:16px;"><strong>Keep it safe:</strong> Use approved Sage tools and sandbox data for practice. Do not enter customer details, ticket contents, credentials, secrets or other personal information here, in an export, or in an AI tool. Keep work evidence in the approved internal location and write only a brief, safe description here.</p>
+    </section>
+
+    <section class="section" id="route">
+      <div class="section-heading"><div class="eyebrow">5 October 2026 to March 2027</div><h2>YOUR <span>ROUTE</span></h2><p>Confluence has the detailed training tracker. These are the actions that show you can use what you learn.</p></div>
+      <div class="grid">
+        <article class="card phase"><div class="phase-head"><h3>Week 1 · Find your feet</h3><span class="when">5–9 OCT</span></div><p class="compact">Workbook Week 1 · Confluence overview and weekly plan</p><div class="task-list"><label class="task"><input type="checkbox" id="w1-setup" data-save data-progress><span>Confirm access to Teams, Outlook, Confluence, Keeper and ServiceNow; note any request that needs chasing.</span></label><label class="task"><input type="checkbox" id="w1-safe" data-save data-progress><span>Explain SBX, INT and PRD to your buddy, and why practice stays in SBX.</span></label><label class="task"><input type="checkbox" id="w1-shadow" data-save data-progress><span>Watch ticket triage, an access request and a Confluence update. Ask why each step matters.</span></label></div><div class="prompt">Show: your workbook Week 1 reflection and one question for your buddy.</div></article>
+        <article class="card phase"><div class="phase-head"><h3>Week 2 · Try it together</h3><span class="when">12–16 OCT</span></div><p class="compact">Workbook Week 2 · Confluence AI basics</p><div class="task-list"><label class="task"><input type="checkbox" id="w2-triage" data-save data-progress><span>With your buddy, triage a ticket: identify what happened, missing details and the relevant guide.</span></label><label class="task"><input type="checkbox" id="w2-access" data-save data-progress><span>With your buddy, draft or raise a suitable ServiceNow access request and agree a follow-up date.</span></label><label class="task"><input type="checkbox" id="w2-words" data-save data-progress><span>Explain L1, L2, escalation and SLA in your own words.</span></label></div><div class="prompt">Show: a reviewed summary and one step you want to practise again. Keep the actual ticket in Sage systems.</div></article>
+        <article class="card phase"><div class="phase-head"><h3>Week 3 · Take the lead</h3><span class="when">19–23 OCT</span></div><p class="compact">Workbook Week 3 · Confluence AI and Copilot page</p><div class="task-list"><label class="task"><input type="checkbox" id="w3-triage" data-save data-progress><span>Prepare a triage summary yourself, then ask your buddy to check it before saving.</span></label><label class="task"><input type="checkbox" id="w3-access" data-save data-progress><span>Prepare an access request yourself, then get the right approval and review.</span></label><label class="task"><input type="checkbox" id="w3-doc" data-save data-progress><span>Make one small Confluence correction with your buddy's review.</span></label><label class="task"><input type="checkbox" id="w3-ai" data-save data-progress><span>Try one approved Copilot task with safe content and check its answer against the source.</span></label></div><div class="prompt">Show: what you changed after feedback, plus one safe Copilot mistake or success.</div></article>
+        <article class="card phase"><div class="phase-head"><h3>Week 4 · Close the loop</h3><span class="when">26–30 OCT</span></div><p class="compact">Workbook Week 4 · Month 1 sign-off in Confluence</p><div class="task-list"><label class="task"><input type="checkbox" id="w4-full" data-save data-progress><span>Complete one suitable task end to end: read, gather details, act, check, update the requester and log the learning.</span></label><label class="task"><input type="checkbox" id="w4-review" data-save data-progress><span>Review your workbook confidence scores with Lee and Adele; agree one focus for November.</span></label><label class="task"><input type="checkbox" id="w4-log" data-save data-progress><span>Check that the Confluence tracker and learning log show your first month accurately.</span></label></div><div class="prompt">Show: a safe description of the full task and what you would do differently next time.</div></article>
+        <article class="card phase"><div class="phase-head"><h3>Months 2–3 · Build context</h3><span class="when">NOV–DEC</span></div><p class="compact">Confluence delivery tracker, Web and Tech Basics, weekly plan</p><div class="task-list"><label class="task"><input type="checkbox" id="m23-products" data-save data-progress><span>Explain Domain Services and each core product in one or two sentences; ask where Enablement fits.</span></label><label class="task"><input type="checkbox" id="m23-api" data-save data-progress><span>With Adele, send a safe Bruno GET request in SBX and identify the status, headers and response.</span></label><label class="task"><input type="checkbox" id="m23-support" data-save data-progress><span>Trace how a request reaches L2 and decide when L1, CloudOps, Product or Engineering should help.</span></label><label class="task"><input type="checkbox" id="m23-github" data-save data-progress><span>Set up your GitHub profile and request access to the approved team repos through the team process.</span></label><label class="task"><input type="checkbox" id="m23-pr" data-save data-progress><span>Use a practice repo to make a branch, commit and pull request; ask for review.</span></label></div><div class="prompt">Show: a simple service map, a safe API learning note and a practice pull request.</div></article>
+        <article class="card phase"><div class="phase-head"><h3>Months 4–6 · Own more</h3><span class="when">JAN–MAR</span></div><p class="compact">Confluence delivery tracker, Codex and MCP, Web and Tech Basics</p><div class="task-list"><label class="task"><input type="checkbox" id="m46-partner" data-save data-progress><span>Shadow partner onboarding and explain the sandbox-to-production path; practise credential work only with approval.</span></label><label class="task"><input type="checkbox" id="m46-itp" data-save data-progress><span>Shadow an Integration Test Plan review and describe what makes it useful.</span></label><label class="task"><input type="checkbox" id="m46-cluedo" data-save data-progress><span>Solve two Network Cluedo tasks with your mentor and one independently, then compare approaches.</span></label><label class="task"><input type="checkbox" id="m46-docs" data-save data-progress><span>Make a small documentation change on a branch, get it reviewed and explain the change.</span></label><label class="task"><input type="checkbox" id="m46-codex" data-save data-progress><span>After access is approved, try Codex and an approved MCP server in a practice repo with Adele.</span></label></div><div class="prompt">Show: reviewed work, what you decided independently, and when you asked for help.</div></article>
+      </div>
+    </section>
+
+    <section class="section" id="people">
+      <div class="section-heading"><div class="eyebrow">Book the introductions</div><h2>KNOW <span>WHO TO ASK</span></h2><p>Send short invitations yourself. Adele can help you choose the right contact for roles without a named person here. Aim for 15–20 minutes; bring one question and record one useful takeaway.</p></div>
+      <div class="card accent" style="margin-bottom:16px;"><div class="card-label">Invitation you can adapt</div><p>Hi [name], I'm Lucas, the new Apprentice Enablement Engineer. Could we book 15 minutes for an introduction? I'd like to learn what your team does, when Enablement works with you, and the best way to ask for help. Thanks, Lucas.</p></div>
+      <div class="grid three">
+        <article class="card meeting"><div class="card-label">Book in Week 1</div><h3>Lee · Your manager</h3><p class="compact">Ask what good progress looks like by the end of Month 1 and how to raise a blocker early.</p><div class="task-list"><label class="task"><input type="checkbox" id="meet-lee-booked" data-save data-progress><span>Invited</span></label><label class="task"><input type="checkbox" id="meet-lee-met" data-save data-progress><span>Met</span></label></div><div class="field"><label for="meet-lee-note">One useful takeaway</label><textarea id="meet-lee-note" data-save></textarea></div></article>
+        <article class="card meeting"><div class="card-label">Book in Week 1</div><h3>Adele · Your mentor</h3><p class="compact">Agree a regular check-in, how to choose practice tasks and when to ask for review.</p><div class="task-list"><label class="task"><input type="checkbox" id="meet-adele-booked" data-save data-progress><span>Invited</span></label><label class="task"><input type="checkbox" id="meet-adele-met" data-save data-progress><span>Met</span></label></div><div class="field"><label for="meet-adele-note">One useful takeaway</label><textarea id="meet-adele-note" data-save></textarea></div></article>
+        <article class="card meeting"><div class="card-label">Book by Week 3</div><h3>An L1 support colleague</h3><p class="compact">Ask what makes a good handover to L2 and which details are often missing.</p><div class="task-list"><label class="task"><input type="checkbox" id="meet-l1-booked" data-save data-progress><span>Invited</span></label><label class="task"><input type="checkbox" id="meet-l1-met" data-save data-progress><span>Met</span></label></div><div class="field"><label for="meet-l1-note">Name and one takeaway</label><textarea id="meet-l1-note" data-save></textarea></div></article>
+        <article class="card meeting"><div class="card-label">Book by Month 2</div><h3>A CloudOps colleague</h3><p class="compact">Ask how environment and data issues reach them, and what to include when escalating.</p><div class="task-list"><label class="task"><input type="checkbox" id="meet-cloudops-booked" data-save data-progress><span>Invited</span></label><label class="task"><input type="checkbox" id="meet-cloudops-met" data-save data-progress><span>Met</span></label></div><div class="field"><label for="meet-cloudops-note">Name and one takeaway</label><textarea id="meet-cloudops-note" data-save></textarea></div></article>
+        <article class="card meeting"><div class="card-label">Book by Month 2</div><h3>A Product Manager</h3><p class="compact">Ask how a partner issue becomes a product decision and where roadmap questions belong.</p><div class="task-list"><label class="task"><input type="checkbox" id="meet-product-booked" data-save data-progress><span>Invited</span></label><label class="task"><input type="checkbox" id="meet-product-met" data-save data-progress><span>Met</span></label></div><div class="field"><label for="meet-product-note">Name and one takeaway</label><textarea id="meet-product-note" data-save></textarea></div></article>
+        <article class="card meeting"><div class="card-label">Book by Month 2</div><h3>An Engineering contact</h3><p class="compact">Ask how technical issues are routed and what evidence helps an engineer investigate.</p><div class="task-list"><label class="task"><input type="checkbox" id="meet-engineering-booked" data-save data-progress><span>Invited</span></label><label class="task"><input type="checkbox" id="meet-engineering-met" data-save data-progress><span>Met</span></label></div><div class="field"><label for="meet-engineering-note">Name and one takeaway</label><textarea id="meet-engineering-note" data-save></textarea></div></article>
+        <article class="card meeting"><div class="card-label">Book in Month 1</div><h3>Your apprenticeship coach</h3><p class="compact">Confirm review dates, off-the-job learning records and portfolio evidence expectations.</p><div class="task-list"><label class="task"><input type="checkbox" id="meet-coach-booked" data-save data-progress><span>Invited</span></label><label class="task"><input type="checkbox" id="meet-coach-met" data-save data-progress><span>Met</span></label></div><div class="field"><label for="meet-coach-note">Name and one takeaway</label><textarea id="meet-coach-note" data-save></textarea></div></article>
+      </div>
+    </section>
+
+    <section class="section" id="practice">
+      <div class="section-heading"><div class="eyebrow">A way to measure independence</div><h2>FROM WATCHING <span>TO OWNING</span></h2><p>Use this ladder for ticket triage, access requests and later documentation or partner tasks. Move up only when the task and access are appropriate; review still matters.</p></div>
+      <div class="ladder"><div class="rung"><strong>Watch</strong><p>See the task done. Ask what the person checked and why.</p></div><div class="rung"><strong>Do together</strong><p>Take a step with your buddy beside you. Write down the process.</p></div><div class="rung"><strong>Lead, then check</strong><p>Prepare the work yourself. Ask for review before any live change or external reply.</p></div><div class="rung"><strong>Own the loop</strong><p>Choose the right guide, complete a suitable task, check it, update people and log the learning.</p></div></div>
+      <div class="grid" style="margin-top:16px;"><div class="card"><div class="card-label">Habits to make routine</div><p class="compact">Tick each habit when you can show it on a suitable task.</p><div class="task-list"><label class="task"><input type="checkbox" id="independent-guide" data-save data-progress><span>I found the relevant Confluence guide or asked for the right one.</span></label><label class="task"><input type="checkbox" id="independent-safe" data-save data-progress><span>I checked the environment, data and permission level.</span></label><label class="task"><input type="checkbox" id="independent-review" data-save data-progress><span>I got the review or approval this task needs.</span></label><label class="task"><input type="checkbox" id="independent-close" data-save data-progress><span>I updated the requester and recorded the outcome in the right system.</span></label></div></div><div class="card"><div class="card-label">When to bring someone in</div><p>Ask your buddy or manager when the guide is unclear, the task touches live data or credentials, or you are unsure who owns the issue. In the workbook's routing guide: environment data issues go to CloudOps; feature timing or pricing goes to Product; broken systems go to Engineering through the proper ticket route.</p><p class="compact">Knowing when to ask is part of independent work.</p></div></div>
+    </section>
+
+    <section class="section" id="reflection">
+      <div class="section-heading"><div class="eyebrow">Take five minutes at each review</div><h2>WHAT CAN YOU <span>DO NOW?</span></h2><p>Keep the detailed learning log and scores in Confluence. These short reflections help you and Adele choose the next real task.</p></div>
+      <div class="grid three"><div class="card"><div class="card-label">End of Month 1</div><div class="field"><label for="reflection-1">One task I can now do with a check</label><textarea id="reflection-1" data-save></textarea></div><div class="field"><label for="focus-1">One thing to practise next</label><textarea id="focus-1" data-save></textarea></div></div><div class="card"><div class="card-label">End of Month 3</div><div class="field"><label for="reflection-3">A task I can handle with less help</label><textarea id="reflection-3" data-save></textarea></div><div class="field"><label for="focus-3">What I still need to learn</label><textarea id="focus-3" data-save></textarea></div></div><div class="card"><div class="card-label">End of Month 6</div><div class="field"><label for="reflection-6">A piece of work I owned and how I checked it</label><textarea id="reflection-6" data-save></textarea></div><div class="field"><label for="focus-6">My next goal with Lee and Adele</label><textarea id="focus-6" data-save></textarea></div></div></div>
+    </section>
+
+    <section class="section" id="next"><div class="section-heading"><div class="eyebrow">Your next move</div><h2>KEEP <span>GOING</span></h2><p>Open the <a href="https://confluence.sage.com/spaces/SFLOC/pages/916586929/Lucas" target="_blank" rel="noopener noreferrer">Lucas Confluence hub ↗</a>, find this week's page, and book the next introduction or practice slot. At your check-in, show one thing you tried, one thing you learned, and one decision you made yourself.</p></div><div class="card accent"><div class="card-label">A good question for your next check-in</div><p>“Which task is safe for me to own next, and what would you want to see before I do it without a check?”</p></div></section>
+  </main>
+  <footer class="wrap">Sage Domain Services · Enablement · Lucas's onboarding passport · Answers save only in this browser.</footer>
+  <div class="save-bar" aria-label="Passport backup controls"><span id="save-status" role="status">saved in this browser</span><button type="button" id="export-button">⬇ Export</button><label for="import-file">⬆ Import</label><input id="import-file" type="file" accept="application/json" hidden></div>
+  <script>
+    (function () {
+      'use strict';
+      var key = 'sage-passport:lucas:v1';
+      var schema = 'lucas-passport-v1';
+      var fields = Array.from(document.querySelectorAll('[data-save]'));
+      var status = document.getElementById('save-status');
+      var timer;
+      function state() {
+        var values = {};
+        fields.forEach(function (field) { values[field.id] = field.type === 'checkbox' ? field.checked : field.value; });
+        return { schema: schema, values: values, savedAt: new Date().toISOString() };
+      }
+      function apply(data) {
+        if (!data || data.schema !== schema || !data.values || typeof data.values !== 'object') throw new Error('This is not a Lucas passport backup.');
+        fields.forEach(function (field) {
+          if (!Object.prototype.hasOwnProperty.call(data.values, field.id)) return;
+          var value = data.values[field.id];
+          if (field.type === 'checkbox' && typeof value === 'boolean') field.checked = value;
+          if (field.type !== 'checkbox' && typeof value === 'string') field.value = value;
+        });
+        progress();
+      }
+      function progress() {
+        var checks = Array.from(document.querySelectorAll('input[data-progress]'));
+        var done = checks.filter(function (box) { return box.checked; }).length;
+        var pct = checks.length ? Math.round(done / checks.length * 100) : 0;
+        var bar = document.getElementById('progress-fill');
+        bar.style.width = pct + '%';
+        bar.setAttribute('aria-valuenow', String(pct));
+        document.getElementById('progress-text').textContent = done + ' of ' + checks.length + ' activities completed';
+      }
+      function save() {
+        try { localStorage.setItem(key, JSON.stringify(state())); status.textContent = 'saved in this browser'; }
+        catch (error) { status.textContent = 'save unavailable — export a copy'; }
+      }
+      function schedule() {
+        progress();
+        status.textContent = 'saving…';
+        clearTimeout(timer);
+        timer = setTimeout(save, 250);
+      }
+      try { var previous = localStorage.getItem(key); if (previous) apply(JSON.parse(previous)); }
+      catch (error) { status.textContent = 'save unavailable — export a copy'; }
+      progress();
+      fields.forEach(function (field) { field.addEventListener('input', schedule); field.addEventListener('change', schedule); });
+      document.getElementById('export-button').addEventListener('click', function () {
+        clearTimeout(timer);
+        save();
+        var url = URL.createObjectURL(new Blob([JSON.stringify(state(), null, 2)], { type: 'application/json' }));
+        var link = document.createElement('a');
+        link.href = url; link.download = 'lucas-sage-passport.json';
+        document.body.appendChild(link); link.click(); link.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+      });
+      document.getElementById('import-file').addEventListener('change', function (event) {
+        var file = event.target.files[0];
+        if (!file) return;
+        if (file.size > 1000000) { alert('That backup is too large.'); event.target.value = ''; return; }
+        var reader = new FileReader();
+        reader.onload = function () {
+          try {
+            var data = JSON.parse(reader.result);
+            if (!data || data.schema !== schema || !data.values) throw new Error('Wrong backup');
+            if (confirm('Replace the answers saved in this browser with this backup?')) { apply(data); save(); }
+          } catch (error) { alert('This file is not a Lucas passport backup.'); }
+          event.target.value = '';
+        };
+        reader.readAsText(file);
+      });
+    })();
+  </script>
+</body>
+</html>
