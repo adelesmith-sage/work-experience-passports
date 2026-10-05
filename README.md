@@ -11,12 +11,12 @@ Lucas's passport sits alongside his First Month Workbook and [Confluence onboard
 
 ## Host it on GitHub Pages
 
-1. Add each HTML file to the repo root. Keep the named files so both passports have their own URL.
-2. **Settings → Pages → Build and deployment**: source = *Deploy from a branch*,
-   branch = `main`, folder = `/ (root)`. Save.
-3. After Pages publishes the branch, open:
-   - `https://adelesmith-sage.github.io/work-experience-passports/LukeSagePassport.html`
-   - `https://adelesmith-sage.github.io/work-experience-passports/LucasSagePassport.html`
+GitHub Pages currently publishes the `Megan` branch from `/ (root)`. Lucas's passport is on that branch as well as `main`. For future changes, update the publishing branch or intentionally change the Pages source in **Settings → Pages → Build and deployment**.
+
+After Pages publishes the branch, open:
+
+- `https://adelesmith-sage.github.io/work-experience-passports/LukeSagePassport.html`
+- `https://adelesmith-sage.github.io/work-experience-passports/LucasSagePassport.html`
 
 ## Luke's password gate
 
