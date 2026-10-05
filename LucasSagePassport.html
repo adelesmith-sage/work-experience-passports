@@ -5,11 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Lucas's Sage Enablement Passport</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap');
     :root { --green:#00ff6b; --green-mid:#00a159; --black:#0a0a0a; --dark:#111; --card:#161616; --white:#f5f5f5; --muted:#aaa; --border:#303030; }
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; scroll-padding-top:78px; }
-    body { margin:0; background:var(--black); color:var(--white); font:14px/1.65 'Space Mono',monospace; }
+    body { margin:0; background:var(--black); color:var(--white); font:14px/1.65 ui-monospace,Consolas,monospace; }
     a { color:var(--green); }
     a:hover { text-decoration:none; }
     button, input, textarea { font:inherit; }
@@ -17,7 +16,7 @@
     :focus-visible { outline:3px solid var(--green); outline-offset:3px; }
     .skip { position:absolute; top:-100px; left:12px; z-index:30; padding:8px 12px; background:var(--green); color:var(--black); }
     .skip:focus { top:12px; }
-    h1,h2,h3,.eyebrow,.pill,.nav a,.card-label { font-family:Syne,sans-serif; text-transform:uppercase; letter-spacing:.05em; }
+    h1,h2,h3,.eyebrow,.pill,.nav a,.card-label { font-family:Arial,sans-serif; text-transform:uppercase; letter-spacing:.05em; }
     h1,h2,h3,p { margin-top:0; }
     h2 { font-size:clamp(29px,5vw,46px); line-height:1.08; }
     h2 span { color:var(--green); }
@@ -28,7 +27,7 @@
     .cover .wrap { width:100%; min-width:0; }
     .pill { display:inline-block; border-radius:999px; padding:6px 14px; background:var(--green); color:var(--black); font-size:11px; font-weight:800; }
     h1 { margin:22px 0 15px; color:var(--green); font-size:clamp(48px,10vw,98px); line-height:.94; font-weight:800; }
-    .subtitle { font:600 clamp(16px,2.5vw,22px)/1.35 Syne,sans-serif; max-width:640px; }
+    .subtitle { font:600 clamp(16px,2.5vw,22px)/1.35 Arial,sans-serif; max-width:640px; }
     .meta { color:var(--green-mid); font-size:12px; letter-spacing:.08em; }
     .cover-actions { display:flex; flex-wrap:wrap; gap:12px; margin:30px 0; }
     .button { display:inline-block; border:1px solid var(--green); border-radius:8px; padding:10px 16px; background:var(--green); color:var(--black); text-decoration:none; font-weight:700; }
@@ -72,7 +71,24 @@
     .ladder { counter-reset:step; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
     .rung { border:1px solid var(--border); border-radius:12px; padding:17px; background:var(--dark); }
     .rung::before { counter-increment:step; content:'0' counter(step); display:block; color:var(--green); font-weight:700; margin-bottom:8px; }
-    .rung strong { font-family:Syne,sans-serif; text-transform:uppercase; }
+    .rung strong { font-family:Arial,sans-serif; text-transform:uppercase; }
+    .setup-list,.resource-list { display:grid; gap:12px; }
+    .setup-item,.resource-item { border-top:1px solid var(--border); padding-top:12px; }
+    .setup-item:first-child,.resource-item:first-child { border-top:0; padding-top:0; }
+    .setup-item p { margin:6px 0 0 28px; font-size:12px; color:var(--muted); }
+    .resource-item .field { margin:8px 0 0 28px; }
+    .resource-item .field input { padding:7px 9px; }
+    .practice-card { margin-bottom:16px; }
+    .choice-row { display:flex; flex-wrap:wrap; gap:8px; margin:10px 0; }
+    .choice-row button,.small-button { border:1px solid #487653; border-radius:8px; padding:8px 12px; background:#173d24; color:var(--green); }
+    .choice-row button[aria-pressed="true"] { background:var(--green); color:var(--black); }
+    .feedback { min-height:1.5em; color:#d5f6de; font-size:12px; }
+    .exercise { border-top:1px solid var(--border); padding:12px 0; }
+    .exercise:first-child { border-top:0; }
+    .exercise p { margin-bottom:8px; }
+    .exercise select { max-width:100%; padding:8px 10px; border:1px solid #487653; border-radius:8px; background:var(--dark); color:var(--white); font:inherit; }
+    pre { max-width:100%; overflow-x:auto; padding:12px; border:1px solid var(--border); border-radius:8px; background:var(--dark); font-size:12px; }
+    .print-only { display:none; }
     .rung p { font-size:12px; margin:8px 0 0; color:var(--muted); }
     .progress-box { max-width:440px; }
     .progress-track { height:9px; border:1px solid #326548; border-radius:999px; overflow:hidden; background:var(--dark); }
@@ -84,7 +100,7 @@
     #save-status { color:var(--muted); font-size:10px; padding:0 7px; }
     footer { padding:35px 0 90px; color:var(--muted); font-size:11px; }
     @media(max-width:760px) { .grid,.grid.three,.ladder { grid-template-columns:1fr; } .section { padding:48px 0; } .cover { min-height:auto; } h1 { font-size:clamp(31px,8vw,50px); letter-spacing:-.03em; overflow-wrap:anywhere; } .pill { max-width:100%; white-space:normal; overflow-wrap:anywhere; } .cover-actions .button { width:100%; max-width:100%; text-align:center; overflow-wrap:anywhere; } .save-bar { left:10px; right:10px; justify-content:center; } }
-    @media print { @page { size:A4; margin:12mm; } html { scroll-behavior:auto; } body { background:#fff; color:#111; font-size:10px; } .cover { min-height:auto; background:#fff; padding:10px 0 20px; } h1,h2,h2 span,.eyebrow,.card-label,.phase-head .when,.rung::before { color:#111; } p,.compact,.cover-note,.field label,.progress-text { color:#333; } .nav,.save-bar,.skip,.cover-actions { display:none !important; } .section { padding:18px 0; border-color:#bbb; } .card,.rung,.note,.field input,.field textarea { background:#fff; color:#111; border-color:#aaa; break-inside:avoid; } .grid,.grid.three,.ladder { gap:8px; } .card { padding:12px; } .task input { accent-color:#111; } footer { padding:15px 0; } a { color:#111; } }
+    @media print { @page { size:A4; margin:12mm; } html { scroll-behavior:auto; } body { background:#fff; color:#111; font-size:10px; } .cover { min-height:auto; background:#fff; padding:10px 0 20px; } h1,h2,h2 span,.eyebrow,.card-label,.phase-head .when,.rung::before { color:#111; } p,.compact,.cover-note,.field label,.progress-text { color:#333; } .nav,.save-bar,.skip,.cover-actions,.screen-only { display:none !important; } .print-only { display:block; } .section { padding:18px 0; border-color:#bbb; } .card,.rung,.note,.field input,.field textarea,pre { background:#fff; color:#111; border-color:#aaa; break-inside:avoid; } .grid,.grid.three,.ladder { gap:8px; } .card { padding:12px; } .task input { accent-color:#111; } footer { padding:15px 0; } a { color:#111; } }
   </style>
 </head>
 <body>
@@ -93,53 +109,64 @@
     <span class="pill">🌿 Sage Domain Services · Enablement</span>
     <h1>LUCAS'S<br>PASSPORT</h1>
     <p class="subtitle">A practical route from your first week to confident, independent work.</p>
-    <p class="meta">APPRENTICE ENABLEMENT ENGINEER · STARTING 5 OCTOBER 2026</p>
+    <p class="meta">APPRENTICE ENABLEMENT ENGINEER · STARTING 5 October 2026</p>
     <div class="cover-actions"><a class="button" href="#start">Start here →</a><a class="button secondary" href="https://confluence.sage.com/spaces/SFLOC/pages/916586929/Lucas" target="_blank" rel="noopener noreferrer">Open Lucas's Confluence hub ↗</a></div>
     <div class="progress-box" aria-label="Passport activity progress"><div class="progress-track"><div class="progress-fill" id="progress-fill" role="progressbar" aria-label="Activities completed" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div><p class="progress-text" id="progress-text">0 activities completed</p></div>
     <p class="cover-note">Tick activities as you do them. Your answers save in this browser; use Export to keep a backup. Training scores, course dates and the daily learning log belong in Confluence.</p>
   </div></header>
 
-  <nav class="nav" aria-label="Passport sections"><a href="#start">Start</a><a href="#route">Your route</a><a href="#people">People</a><a href="#practice">Independence</a><a href="#reflection">Reflect</a><a href="#next">Next steps</a></nav>
+  <nav class="nav" aria-label="Passport sections"><a href="#start">Start</a><a href="#setup">Get set up</a><a href="#route">Your route</a><a href="#learn">Learn more</a><a href="#practice-zone">Practice zone</a><a href="#people">People</a><a href="#independence">Independence</a><a href="#reflection">Reflect</a><a href="#next">Next steps</a></nav>
   <main class="wrap">
     <section class="section" id="start">
-      <div class="section-heading"><div class="eyebrow">Before you begin</div><h2>MAKE IT <span>YOURS</span></h2><p class="lead">Use this page to turn learning into conversations and real work. Move at a steady pace; agree changes with your mentor when access or a task is delayed.</p></div>
+      <div class="section-heading"><div class="eyebrow">Before you begin</div><h2>MAKE IT <span>YOURS</span></h2><p class="lead">Use this page to turn learning into conversations and real work. This is a guide, not a race. Agree changes with your mentor (Adele) when access or a task is delayed.</p></div>
       <div class="grid">
-        <div class="card accent"><div class="card-label">Your three places</div><h3>Know where to go</h3><ul class="link-list"><li><strong>First Month Workbook</strong><br><span class="compact">Weeks 1–4: everyday habits, guided triage and access requests, reflection, and sign-off.</span></li><li><strong><a href="https://confluence.sage.com/spaces/SFLOC/pages/916586929/Lucas" target="_blank" rel="noopener noreferrer">Lucas's Confluence hub ↗</a></strong><br><span class="compact">Open “Enablement Onboarding Delivery” for scores and target dates, the self-learning pages for courses, and “Weekly Plan and Learning Log” for daily entries.</span></li><li><strong>This passport</strong><br><span class="compact">Choose a next action, book introductions, capture a safe learning note, and check when you can do more on your own.</span></li></ul></div>
+        <div class="card accent"><div class="card-label">Your three places</div><h3>Know where to go</h3><ul class="link-list"><li><strong>First Month Workbook</strong><br><span class="compact">Month 1: everyday habits, guided triage and access requests, reflection, and sign-off.</span></li><li><strong><a href="https://confluence.sage.com/spaces/SFLOC/pages/916586929/Lucas" target="_blank" rel="noopener noreferrer">Lucas's Confluence hub ↗</a></strong><br><span class="compact">Open “Enablement Onboarding Delivery” for scores and target dates, the self-learning pages for courses, and “Weekly Plan and Learning Log” for daily entries.</span></li><li><strong>This passport</strong><br><span class="compact">Choose a next action, book introductions, capture a safe learning note, and check when you can do more on your own.</span></li></ul></div>
         <div class="card"><div class="card-label">Get into the rhythm</div><h3>Pick one, do one, log one</h3><p class="compact">Try this once, then repeat it each week using the Confluence plan and log.</p><div class="task-list"><label class="task"><input type="checkbox" id="rhythm-read" data-save data-progress><span>Read the current week in Confluence and choose one small task.</span></label><label class="task"><input type="checkbox" id="rhythm-ask" data-save data-progress><span>Ask your mentor which real or sandbox task is suitable.</span></label><label class="task"><input type="checkbox" id="rhythm-log" data-save data-progress><span>Do it, get feedback, and add a line to the Confluence learning log.</span></label></div><div class="prompt">Stuck for 30 minutes? Ask Adele. Include what you tried, what happened, and what you need next.</div></div>
       </div>
-      <p class="note" style="margin-top:16px;"><strong>Keep it safe:</strong> Use approved Sage tools and sandbox data for practice. Do not enter customer details, ticket contents, credentials, secrets or other personal information here, in an export, or in an AI tool. Keep work evidence in the approved internal location and write only a brief, safe description here.</p>
+      <p class="note" style="margin-top:16px;"><strong>Keep it safe:</strong> Use approved Sage tools and sandbox data for practice. Do not enter customer details, ticket contents, credentials, secrets or other personal information here, in an export, or in an AI tool. Keep detailed learning in the Confluence learning log and write only a brief, safe description here.</p>
     </section>
 
+    <section class="section" id="setup"><div class="section-heading"><div class="eyebrow">Company basics</div><h2>GET <span>SET UP</span></h2><p>Company admin that isn't covered in Confluence. Tick each one off once you've done it.</p></div><div class="card accent setup-list"><div class="setup-item"><label class="task"><input type="checkbox" id="setup-1" data-save data-progress><span><strong>Your Sage</strong></span></label><p>Teams: left panel > Your Sage. For news, payslips and rewards, or bookmark <a href="https://sage365.sharepoint.com/" target="_blank" rel="noopener noreferrer">Your Sage in the browser</a>.</p></div><div class="setup-item"><label class="task"><input type="checkbox" id="setup-2" data-save data-progress><span><strong>My Apps</strong></span></label><p>Browser puzzle icon (top right) > My Apps, or <a href="https://myapplications.microsoft.com/" target="_blank" rel="noopener noreferrer">open My Apps</a>. Sage People, Sage Rewards and Benefits, Learning and Payslips are under “Sage Apps”. Missing an app? Raise a ServiceNow request.</p></div><div class="setup-item"><label class="task"><input type="checkbox" id="setup-3" data-save data-progress><span><strong>Sage People</strong></span></label><p><a href="https://people.sage.com/" target="_blank" rel="noopener noreferrer">Open Sage People</a>, or Your Sage > S menu > My Colleague Zone > Sage People. Check your profile, holidays, absence, LEAD reviews and OKRs. Check details in My Profile > Personal Details and My Work Details. Book leave in Vacation & Absence > Book Vacation and Absence > New > choose reason > pick dates > Save.</p></div><div class="setup-item"><label class="task"><input type="checkbox" id="setup-4" data-save data-progress><span><strong>Bank details</strong></span></label><p>Add them in myPay (ADP), found in My Apps. Do not put bank details in this passport.</p></div><div class="setup-item"><label class="task"><input type="checkbox" id="setup-5" data-save data-progress><span><strong>Sage Rewards and Benefits</strong></span></label><p>My Apps > Sage Apps > Sage Rewards and Benefits.</p></div><div class="setup-item"><label class="task"><input type="checkbox" id="setup-6" data-save data-progress><span><strong>Expenses and travel</strong></span></label><p>Find Certify for expenses and Egencia for travel in My Apps. Sage credit card and T&E policies are in the T&E Hub on Your Sage.</p></div><div class="setup-item"><label class="task"><input type="checkbox" id="setup-7" data-save data-progress><span><strong>Sage Learning</strong></span></label><p><a href="https://learning.sage.com/" target="_blank" rel="noopener noreferrer">Open Sage Learning</a> > My Transcript. Mandatory items sit at the top with a due date. Access usually works within 48 hours of starting.</p></div><div class="setup-item"><label class="task"><input type="checkbox" id="setup-8" data-save data-progress><span><strong>Microsoft 365 Copilot</strong></span></label><p>Sign in with your Sage account in Teams, Outlook and Word. First, search “Copilot Colleague Guidance” in Your Sage and read it.</p></div><div class="setup-item"><label class="task"><input type="checkbox" id="setup-9" data-save data-progress><span><strong>GitHub Copilot</strong></span></label><p>Your Sage > Collaboration Zone > Developer Tools > GitHub Copilot > Enroll. First make your @sage.com address your <a href="https://github.com/settings/emails" target="_blank" rel="noopener noreferrer">primary GitHub email</a> and check <a href="https://github.com/settings/organizations" target="_blank" rel="noopener noreferrer">your organisations</a> for Sage. Install the VS Code extension and sign in with Sage GitHub SSO. Access can be removed after 60 days without use.</p></div><div class="setup-item"><label class="task"><input type="checkbox" id="setup-10" data-save data-progress><span><strong>Codex</strong></span></label><p>Codex is approved at Sage, but Cloud Operations manages access. Talk to mentor (Adele) before requesting.</p></div><div class="setup-item"><label class="task"><input type="checkbox" id="setup-11" data-save data-progress><span><strong>Help</strong></span></label><p>IT and People Services questions go through ServiceNow.</p></div></div></section>
+
     <section class="section" id="route">
-      <div class="section-heading"><div class="eyebrow">5 October 2026 to March 2027</div><h2>YOUR <span>ROUTE</span></h2><p>Confluence has the detailed training tracker. These are the actions that show you can use what you learn.</p></div>
-      <div class="grid">
-        <article class="card phase"><div class="phase-head"><h3>Week 1 · Find your feet</h3><span class="when">5–9 OCT</span></div><p class="compact">Workbook Week 1 · Confluence overview and weekly plan</p><div class="task-list"><label class="task"><input type="checkbox" id="w1-setup" data-save data-progress><span>Confirm access to Teams, Outlook, Confluence, Keeper and ServiceNow; note any request that needs chasing.</span></label><label class="task"><input type="checkbox" id="w1-safe" data-save data-progress><span>Explain SBX, INT and PRD to your buddy, and why practice stays in SBX.</span></label><label class="task"><input type="checkbox" id="w1-shadow" data-save data-progress><span>Watch ticket triage, an access request and a Confluence update. Ask why each step matters.</span></label></div><div class="prompt">Show: your workbook Week 1 reflection and one question for your buddy.</div></article>
-        <article class="card phase"><div class="phase-head"><h3>Week 2 · Try it together</h3><span class="when">12–16 OCT</span></div><p class="compact">Workbook Week 2 · Confluence AI basics</p><div class="task-list"><label class="task"><input type="checkbox" id="w2-triage" data-save data-progress><span>With your buddy, triage a ticket: identify what happened, missing details and the relevant guide.</span></label><label class="task"><input type="checkbox" id="w2-access" data-save data-progress><span>With your buddy, draft or raise a suitable ServiceNow access request and agree a follow-up date.</span></label><label class="task"><input type="checkbox" id="w2-words" data-save data-progress><span>Explain L1, L2, escalation and SLA in your own words.</span></label></div><div class="prompt">Show: a reviewed summary and one step you want to practise again. Keep the actual ticket in Sage systems.</div></article>
-        <article class="card phase"><div class="phase-head"><h3>Week 3 · Take the lead</h3><span class="when">19–23 OCT</span></div><p class="compact">Workbook Week 3 · Confluence AI and Copilot page</p><div class="task-list"><label class="task"><input type="checkbox" id="w3-triage" data-save data-progress><span>Prepare a triage summary yourself, then ask your buddy to check it before saving.</span></label><label class="task"><input type="checkbox" id="w3-access" data-save data-progress><span>Prepare an access request yourself, then get the right approval and review.</span></label><label class="task"><input type="checkbox" id="w3-doc" data-save data-progress><span>Make one small Confluence correction with your buddy's review.</span></label><label class="task"><input type="checkbox" id="w3-ai" data-save data-progress><span>Try one approved Copilot task with safe content and check its answer against the source.</span></label></div><div class="prompt">Show: what you changed after feedback, plus one safe Copilot mistake or success.</div></article>
-        <article class="card phase"><div class="phase-head"><h3>Week 4 · Close the loop</h3><span class="when">26–30 OCT</span></div><p class="compact">Workbook Week 4 · Month 1 sign-off in Confluence</p><div class="task-list"><label class="task"><input type="checkbox" id="w4-full" data-save data-progress><span>Complete one suitable task end to end: read, gather details, act, check, update the requester and log the learning.</span></label><label class="task"><input type="checkbox" id="w4-review" data-save data-progress><span>Review your workbook confidence scores with Lee and Adele; agree one focus for November.</span></label><label class="task"><input type="checkbox" id="w4-log" data-save data-progress><span>Check that the Confluence tracker and learning log show your first month accurately.</span></label></div><div class="prompt">Show: a safe description of the full task and what you would do differently next time.</div></article>
-        <article class="card phase"><div class="phase-head"><h3>Months 2–3 · Build context</h3><span class="when">NOV–DEC</span></div><p class="compact">Confluence delivery tracker, Web and Tech Basics, weekly plan</p><div class="task-list"><label class="task"><input type="checkbox" id="m23-products" data-save data-progress><span>Explain Domain Services and each core product in one or two sentences; ask where Enablement fits.</span></label><label class="task"><input type="checkbox" id="m23-api" data-save data-progress><span>With Adele, send a safe Bruno GET request in SBX and identify the status, headers and response.</span></label><label class="task"><input type="checkbox" id="m23-support" data-save data-progress><span>Trace how a request reaches L2 and decide when L1, CloudOps, Product or Engineering should help.</span></label><label class="task"><input type="checkbox" id="m23-github" data-save data-progress><span>Set up your GitHub profile and request access to the approved team repos through the team process.</span></label><label class="task"><input type="checkbox" id="m23-pr" data-save data-progress><span>Use a practice repo to make a branch, commit and pull request; ask for review.</span></label></div><div class="prompt">Show: a simple service map, a safe API learning note and a practice pull request.</div></article>
-        <article class="card phase"><div class="phase-head"><h3>Months 4–6 · Own more</h3><span class="when">JAN–MAR</span></div><p class="compact">Confluence delivery tracker, Codex and MCP, Web and Tech Basics</p><div class="task-list"><label class="task"><input type="checkbox" id="m46-partner" data-save data-progress><span>Shadow partner onboarding and explain the sandbox-to-production path; practise credential work only with approval.</span></label><label class="task"><input type="checkbox" id="m46-itp" data-save data-progress><span>Shadow an Integration Test Plan review and describe what makes it useful.</span></label><label class="task"><input type="checkbox" id="m46-cluedo" data-save data-progress><span>Solve two Network Cluedo tasks with your mentor and one independently, then compare approaches.</span></label><label class="task"><input type="checkbox" id="m46-docs" data-save data-progress><span>Make a small documentation change on a branch, get it reviewed and explain the change.</span></label><label class="task"><input type="checkbox" id="m46-codex" data-save data-progress><span>After access is approved, try Codex and an approved MCP server in a practice repo with Adele.</span></label></div><div class="prompt">Show: reviewed work, what you decided independently, and when you asked for help.</div></article>
-      </div>
-    </section>
+<div class="section-heading"><div class="eyebrow">Suggested timings</div><h2>YOUR <span>ROUTE</span></h2><p>Use these phases to choose your next step. The detailed plan, target dates and learning log are in <a href="https://confluence.sage.com/spaces/SFLOC/pages/916586929/Lucas" target="_blank" rel="noopener noreferrer">Lucas's Confluence hub</a>.</p></div>
+<div class="grid three">
+<article class="card phase"><div class="phase-head"><h3>Month 1</h3></div><p>Settle in, get set up and finish the First Month Workbook.</p><p class="compact">See “1. Onboarding Overview” and “6. Weekly Plan and Learning Log” in <a href="https://confluence.sage.com/spaces/SFLOC/pages/916586929/Lucas" target="_blank" rel="noopener noreferrer">Confluence ↗</a>.</p></article>
+<article class="card phase"><div class="phase-head"><h3>Months 2–3</h3></div><p>Build core knowledge of Domain Services, its products and the tools you will use.</p><p class="compact">See “2. Enablement Onboarding Delivery”, “3. Self-Learning: AI and Copilot” and “5. Self-Learning: Web and Tech Basics” in <a href="https://confluence.sage.com/spaces/SFLOC/pages/916586929/Lucas" target="_blank" rel="noopener noreferrer">Confluence ↗</a>.</p></article>
+<article class="card phase"><div class="phase-head"><h3>Months 4–6</h3></div><p>Build up through partner onboarding, ITPs, Codex and MCP with the right review.</p><p class="compact">See “2. Enablement Onboarding Delivery” and “4. Self-Learning: Codex and MCP” in <a href="https://confluence.sage.com/spaces/SFLOC/pages/916586929/Lucas" target="_blank" rel="noopener noreferrer">Confluence ↗</a>.</p></article>
+</div></section>
+
+    <section class="section" id="learn"><div class="section-heading"><div class="eyebrow">Optional extras</div><h2>LEARN <span>MORE</span></h2><p>Extras to dip into when you have spare learning time. Pick what interests you.</p><p class="compact">Links open in a new tab when you are online. The passport itself works offline. Keep detailed notes in Confluence.</p></div><div class="grid"><article class="card"><div class="card-label">Customer service and support</div><div class="resource-list"><div class="resource-item"><label class="task"><input type="checkbox" id="learn-1" data-save data-progress><span><a href="https://academy.hubspot.com/courses/delivering-exceptional-customer-support" target="_blank" rel="noopener noreferrer">HubSpot Academy: Delivering Exceptional Customer Support ↗</a><br><span class="compact">free, about 1 hr; SLAs and a support case framework</span></span></label><div class="field"><label for="learn-note-1">What I took from it (no customer details)</label><input type="text" id="learn-note-1" data-save maxlength="180"></div></div><div class="resource-item"><label class="task"><input type="checkbox" id="learn-2" data-save data-progress><span><a href="https://alison.com/course/customer-service-skills" target="_blank" rel="noopener noreferrer">Alison: Customer Service Skills ↗</a><br><span class="compact">free, 1.5–3 hrs</span></span></label><div class="field"><label for="learn-note-2">What I took from it (no customer details)</label><input type="text" id="learn-note-2" data-save maxlength="180"></div></div><div class="resource-item"><label class="task"><input type="checkbox" id="learn-3" data-save data-progress><span><a href="https://www.mygreatlearning.com/academy/learn-for-free/courses/customer-service-essentials" target="_blank" rel="noopener noreferrer">Great Learning: Customer Service Essentials ↗</a><br><span class="compact">free, about 2 hrs</span></span></label><div class="field"><label for="learn-note-3">What I took from it (no customer details)</label><input type="text" id="learn-note-3" data-save maxlength="180"></div></div></div></article><article class="card"><div class="card-label">LinkedIn Learning in Viva Learning</div><div class="resource-list"><div class="resource-item"><label class="task"><input type="checkbox" id="learn-4" data-save data-progress><span>Customer Service Communication Skills<br><span class="compact">Open Viva Learning in Teams and search this title. Includes AI role play practice.</span></span></label><div class="field"><label for="learn-note-4">What I took from it (no customer details)</label><input type="text" id="learn-note-4" data-save maxlength="180"></div></div><div class="resource-item"><label class="task"><input type="checkbox" id="learn-5" data-save data-progress><span>Customer Service: Problem-Solving and Troubleshooting<br><span class="compact">Open Viva Learning in Teams and search this title. Includes AI role play practice.</span></span></label><div class="field"><label for="learn-note-5">What I took from it (no customer details)</label><input type="text" id="learn-note-5" data-save maxlength="180"></div></div><div class="resource-item"><label class="task"><input type="checkbox" id="learn-6" data-save data-progress><span>Listening to Customers<br><span class="compact">Open Viva Learning in Teams and search this title. Includes AI role play practice.</span></span></label><div class="field"><label for="learn-note-6">What I took from it (no customer details)</label><input type="text" id="learn-note-6" data-save maxlength="180"></div></div><div class="resource-item"><label class="task"><input type="checkbox" id="learn-7" data-save data-progress><span>Building Rapport with Customers<br><span class="compact">Open Viva Learning in Teams and search this title. Includes AI role play practice.</span></span></label><div class="field"><label for="learn-note-7">What I took from it (no customer details)</label><input type="text" id="learn-note-7" data-save maxlength="180"></div></div><div class="resource-item"><label class="task"><input type="checkbox" id="learn-8" data-save data-progress><span>IT Service Desk: Customer Service Fundamentals<br><span class="compact">Open Viva Learning in Teams and search this title. Includes AI role play practice.</span></span></label><div class="field"><label for="learn-note-8">What I took from it (no customer details)</label><input type="text" id="learn-note-8" data-save maxlength="180"></div></div><div class="resource-item"><label class="task"><input type="checkbox" id="learn-9" data-save data-progress><span>Tech Career Skills: Effective Technical Communication<br><span class="compact">Open Viva Learning in Teams and search this title. Includes AI role play practice.</span></span></label><div class="field"><label for="learn-note-9">What I took from it (no customer details)</label><input type="text" id="learn-note-9" data-save maxlength="180"></div></div><div class="resource-item"><label class="task"><input type="checkbox" id="learn-10" data-save data-progress><span>Getting Started as a Customer Support Specialist (learning path)<br><span class="compact">Open Viva Learning in Teams and search this title. Includes AI role play practice.</span></span></label><div class="field"><label for="learn-note-10">What I took from it (no customer details)</label><input type="text" id="learn-note-10" data-save maxlength="180"></div></div></div></article><article class="card"><div class="card-label">Security</div><div class="resource-list"><div class="resource-item"><label class="task"><input type="checkbox" id="learn-11" data-save data-progress><span><a href="https://www.ncsc.gov.uk/information/top-tips-for-staff" target="_blank" rel="noopener noreferrer">NCSC Top Tips for Staff ↗</a><br><span class="compact">free, under 30 min; ends with a quiz</span></span></label><div class="field"><label for="learn-note-11">What I took from it (no customer details)</label><input type="text" id="learn-note-11" data-save maxlength="180"></div></div><div class="resource-item"><label class="task"><input type="checkbox" id="learn-12" data-save data-progress><span><a href="https://phishingquiz.withgoogle.com/" target="_blank" rel="noopener noreferrer">Google Phishing Quiz ↗</a><br><span class="compact">spot signs of phishing</span></span></label><div class="field"><label for="learn-note-12">What I took from it (no customer details)</label><input type="text" id="learn-note-12" data-save maxlength="180"></div></div></div></article><article class="card"><div class="card-label">W3Schools</div><div class="resource-list"><div class="resource-item"><label class="task"><input type="checkbox" id="learn-13" data-save data-progress><span><a href="https://www.w3schools.com/sql/" target="_blank" rel="noopener noreferrer">SQL ↗</a><br><span class="compact">Use “Try it Yourself” and the chapter exercises.</span></span></label><div class="field"><label for="learn-note-13">What I took from it (no customer details)</label><input type="text" id="learn-note-13" data-save maxlength="180"></div></div><div class="resource-item"><label class="task"><input type="checkbox" id="learn-14" data-save data-progress><span><a href="https://www.w3schools.com/js/" target="_blank" rel="noopener noreferrer">JavaScript ↗</a><br><span class="compact">Use “Try it Yourself” and the chapter exercises.</span></span></label><div class="field"><label for="learn-note-14">What I took from it (no customer details)</label><input type="text" id="learn-note-14" data-save maxlength="180"></div></div><div class="resource-item"><label class="task"><input type="checkbox" id="learn-15" data-save data-progress><span><a href="https://www.w3schools.com/python/" target="_blank" rel="noopener noreferrer">Python ↗</a><br><span class="compact">Use “Try it Yourself” and the chapter exercises.</span></span></label><div class="field"><label for="learn-note-15">What I took from it (no customer details)</label><input type="text" id="learn-note-15" data-save maxlength="180"></div></div><div class="resource-item"><label class="task"><input type="checkbox" id="learn-16" data-save data-progress><span><a href="https://www.w3schools.com/js/js_json_intro.asp" target="_blank" rel="noopener noreferrer">JSON ↗</a><br><span class="compact">Use “Try it Yourself” and the chapter exercises.</span></span></label><div class="field"><label for="learn-note-16">What I took from it (no customer details)</label><input type="text" id="learn-note-16" data-save maxlength="180"></div></div><div class="resource-item"><label class="task"><input type="checkbox" id="learn-17" data-save data-progress><span><a href="https://www.w3schools.com/git/" target="_blank" rel="noopener noreferrer">Git ↗</a><br><span class="compact">Use “Try it Yourself” and the chapter exercises.</span></span></label><div class="field"><label for="learn-note-17">What I took from it (no customer details)</label><input type="text" id="learn-note-17" data-save maxlength="180"></div></div></div></article><article class="card"><div class="card-label">Learn by playing</div><div class="resource-list"><div class="resource-item"><label class="task"><input type="checkbox" id="learn-18" data-save data-progress><span><a href="https://learngitbranching.js.org/" target="_blank" rel="noopener noreferrer">Learn Git Branching ↗</a><br><span class="compact">visual and interactive</span></span></label><div class="field"><label for="learn-note-18">What I took from it (no customer details)</label><input type="text" id="learn-note-18" data-save maxlength="180"></div></div><div class="resource-item"><label class="task"><input type="checkbox" id="learn-19" data-save data-progress><span><a href="https://sqlbolt.com/" target="_blank" rel="noopener noreferrer">SQLBolt ↗</a><br><span class="compact">interactive SQL lessons</span></span></label><div class="field"><label for="learn-note-19">What I took from it (no customer details)</label><input type="text" id="learn-note-19" data-save maxlength="180"></div></div><div class="resource-item"><label class="task"><input type="checkbox" id="learn-20" data-save data-progress><span><a href="https://flexboxfroggy.com/" target="_blank" rel="noopener noreferrer">Flexbox Froggy ↗</a><br><span class="compact">CSS game</span></span></label><div class="field"><label for="learn-note-20">What I took from it (no customer details)</label><input type="text" id="learn-note-20" data-save maxlength="180"></div></div><div class="resource-item"><label class="task"><input type="checkbox" id="learn-21" data-save data-progress><span><a href="https://cssgridgarden.com/" target="_blank" rel="noopener noreferrer">CSS Grid Garden ↗</a><br><span class="compact">CSS game</span></span></label><div class="field"><label for="learn-note-21">What I took from it (no customer details)</label><input type="text" id="learn-note-21" data-save maxlength="180"></div></div><div class="resource-item"><label class="task"><input type="checkbox" id="learn-22" data-save data-progress><span><a href="https://regexone.com/" target="_blank" rel="noopener noreferrer">RegexOne ↗</a><br><span class="compact">regular expressions for searching logs</span></span></label><div class="field"><label for="learn-note-22">What I took from it (no customer details)</label><input type="text" id="learn-note-22" data-save maxlength="180"></div></div><div class="resource-item"><label class="task"><input type="checkbox" id="learn-23" data-save data-progress><span><a href="https://jsonplaceholder.typicode.com/" target="_blank" rel="noopener noreferrer">JSONPlaceholder ↗</a><br><span class="compact">fake API to practise requests in Bruno</span></span></label><div class="field"><label for="learn-note-23">What I took from it (no customer details)</label><input type="text" id="learn-note-23" data-save maxlength="180"></div></div></div></article><article class="card"><div class="card-label">Broader skills</div><div class="resource-list"><div class="resource-item"><label class="task"><input type="checkbox" id="learn-24" data-save data-progress><span><a href="https://www.open.edu/openlearn/free-courses" target="_blank" rel="noopener noreferrer">OpenLearn free courses ↗</a><br><span class="compact">Open University work skills, digital and business courses; free certificates</span></span></label><div class="field"><label for="learn-note-24">What I took from it (no customer details)</label><input type="text" id="learn-note-24" data-save maxlength="180"></div></div></div></article></div></section>
+
+    <section class="section" id="practice-zone"><div class="section-heading"><div class="eyebrow">Try it yourself</div><h2>PRACTICE <span>ZONE</span></h2><p>Quick activities to test yourself. Everything here is made up, so nothing is real customer data.</p></div>
+<article class="card practice-card"><div class="card-label">1. Glossary flashcards</div><h3>Know the terms</h3><div class="screen-only"><p id="flash-count" aria-live="polite"></p><button class="small-button" type="button" id="flash-card" aria-label="Flip flashcard"></button><p id="flash-face"></p><div class="choice-row"><button type="button" id="flash-again">Again</button><button type="button" id="flash-known">Got it</button></div></div><div class="print-only"><p>Explain: SBX, INT, PRD, L1, L2, SLA, ITP, SFCE, AFNOR, e-invoicing, MCP, PR, MFA, API, JSON and SSO.</p></div></article>
+<article class="card practice-card"><div class="card-label">2. Status code quiz</div><h3>What does this code tell you?</h3><div class="screen-only" id="status-game"></div><div class="print-only"><p>What do 200, 201, 400, 401, 403, 404, 429 and 500 mean? What would you check next?</p></div></article>
+<article class="card practice-card"><div class="card-label">3. Safe to paste into AI?</div><h3>Sort the examples</h3><div class="screen-only" id="safe-game"></div><div class="print-only"><p>Decide which can go in an approved AI tool: a made-up JSON sample; a partner API key; a ticket screenshot with a customer name; a public W3Schools page; a synthetic error message; a live invoice; a generic question about HTTP; a colleague's private HR note.</p></div></article>
+<article class="card practice-card"><div class="card-label">4. Who do I go to?</div><h3>Choose a first stop</h3><p class="compact">Routes vary by issue and team. Check with mentor (Adele) before acting on a real case.</p><div class="screen-only" id="routing-game"></div><div class="print-only"><p>Who would you ask first for a basic request, a complex support issue, an environment issue, a product decision, a technical defect or your learning plan?</p></div></article>
+<article class="card practice-card"><div class="card-label">5. Better reply</div><h3>Choose the helpful reply</h3><div class="screen-only" id="reply-game"></div><div class="print-only"><p>Write a friendly next step for a fictional partner who is waiting for an update, cannot understand an error or has had to repeat their issue.</p></div></article>
+<article class="card practice-card"><div class="card-label">6. Find the value</div><h3>Read a fictional JSON response</h3><pre id="json-sample"></pre><div class="screen-only" id="json-game"></div><div class="print-only"><p>Find the status, the number of transactions, the environment and the currency.</p></div></article>
+<article class="card practice-card"><div class="card-label">7. Ticket triage check</div><h3>What is missing?</h3><p>A fictional ticket says: “The sample feed in SBX did not work at 10:15. Please fix it.” What details would help investigate?</p><div class="screen-only" id="triage-game"></div><div class="print-only"><p>List the missing details that would help someone reproduce and investigate this issue.</p></div></article>
+<article class="card practice-card"><div class="card-label">8. Challenge of the week</div><h3>Pick one next action</h3><div class="screen-only"><button type="button" class="small-button" id="challenge-button">Give me a challenge</button><p id="challenge-result" role="status"></p></div><div class="print-only"><p>Choose one unfinished Learn more item or Practice zone activity to try.</p></div></article>
+</section>
 
     <section class="section" id="people">
       <div class="section-heading"><div class="eyebrow">Book the introductions</div><h2>KNOW <span>WHO TO ASK</span></h2><p>Send short invitations yourself. Adele can help you choose the right contact for roles without a named person here. Aim for 15–20 minutes; bring one question and record one useful takeaway.</p></div>
       <div class="card accent" style="margin-bottom:16px;"><div class="card-label">Invitation you can adapt</div><p>Hi [name], I'm Lucas, the new Apprentice Enablement Engineer. Could we book 15 minutes for an introduction? I'd like to learn what your team does, when Enablement works with you, and the best way to ask for help. Thanks, Lucas.</p></div>
       <div class="grid three">
-        <article class="card meeting"><div class="card-label">Book in Week 1</div><h3>Lee · Your manager</h3><p class="compact">Ask what good progress looks like by the end of Month 1 and how to raise a blocker early.</p><div class="task-list"><label class="task"><input type="checkbox" id="meet-lee-booked" data-save data-progress><span>Invited</span></label><label class="task"><input type="checkbox" id="meet-lee-met" data-save data-progress><span>Met</span></label></div><div class="field"><label for="meet-lee-note">One useful takeaway</label><textarea id="meet-lee-note" data-save></textarea></div></article>
-        <article class="card meeting"><div class="card-label">Book in Week 1</div><h3>Adele · Your mentor</h3><p class="compact">Agree a regular check-in, how to choose practice tasks and when to ask for review.</p><div class="task-list"><label class="task"><input type="checkbox" id="meet-adele-booked" data-save data-progress><span>Invited</span></label><label class="task"><input type="checkbox" id="meet-adele-met" data-save data-progress><span>Met</span></label></div><div class="field"><label for="meet-adele-note">One useful takeaway</label><textarea id="meet-adele-note" data-save></textarea></div></article>
-        <article class="card meeting"><div class="card-label">Book by Week 3</div><h3>An L1 support colleague</h3><p class="compact">Ask what makes a good handover to L2 and which details are often missing.</p><div class="task-list"><label class="task"><input type="checkbox" id="meet-l1-booked" data-save data-progress><span>Invited</span></label><label class="task"><input type="checkbox" id="meet-l1-met" data-save data-progress><span>Met</span></label></div><div class="field"><label for="meet-l1-note">Name and one takeaway</label><textarea id="meet-l1-note" data-save></textarea></div></article>
-        <article class="card meeting"><div class="card-label">Book by Month 2</div><h3>A CloudOps colleague</h3><p class="compact">Ask how environment and data issues reach them, and what to include when escalating.</p><div class="task-list"><label class="task"><input type="checkbox" id="meet-cloudops-booked" data-save data-progress><span>Invited</span></label><label class="task"><input type="checkbox" id="meet-cloudops-met" data-save data-progress><span>Met</span></label></div><div class="field"><label for="meet-cloudops-note">Name and one takeaway</label><textarea id="meet-cloudops-note" data-save></textarea></div></article>
-        <article class="card meeting"><div class="card-label">Book by Month 2</div><h3>A Product Manager</h3><p class="compact">Ask how a partner issue becomes a product decision and where roadmap questions belong.</p><div class="task-list"><label class="task"><input type="checkbox" id="meet-product-booked" data-save data-progress><span>Invited</span></label><label class="task"><input type="checkbox" id="meet-product-met" data-save data-progress><span>Met</span></label></div><div class="field"><label for="meet-product-note">Name and one takeaway</label><textarea id="meet-product-note" data-save></textarea></div></article>
-        <article class="card meeting"><div class="card-label">Book by Month 2</div><h3>An Engineering contact</h3><p class="compact">Ask how technical issues are routed and what evidence helps an engineer investigate.</p><div class="task-list"><label class="task"><input type="checkbox" id="meet-engineering-booked" data-save data-progress><span>Invited</span></label><label class="task"><input type="checkbox" id="meet-engineering-met" data-save data-progress><span>Met</span></label></div><div class="field"><label for="meet-engineering-note">Name and one takeaway</label><textarea id="meet-engineering-note" data-save></textarea></div></article>
-        <article class="card meeting"><div class="card-label">Book in Month 1</div><h3>Your apprenticeship coach</h3><p class="compact">Confirm review dates, off-the-job learning records and portfolio evidence expectations.</p><div class="task-list"><label class="task"><input type="checkbox" id="meet-coach-booked" data-save data-progress><span>Invited</span></label><label class="task"><input type="checkbox" id="meet-coach-met" data-save data-progress><span>Met</span></label></div><div class="field"><label for="meet-coach-note">Name and one takeaway</label><textarea id="meet-coach-note" data-save></textarea></div></article>
+        <article class="card meeting"><div class="card-label">Suggested: Month 1</div><h3>Lee · Your manager</h3><p class="compact">Ask what good progress looks like by the end of Month 1 and how to raise a blocker early.</p><div class="task-list"><label class="task"><input type="checkbox" id="meet-lee-booked" data-save data-progress><span>Invited</span></label><label class="task"><input type="checkbox" id="meet-lee-met" data-save data-progress><span>Met</span></label></div><div class="field"><label for="meet-lee-note">One useful takeaway</label><textarea id="meet-lee-note" data-save></textarea></div></article>
+        <article class="card meeting"><div class="card-label">Suggested: Month 1</div><h3>Adele · Your mentor</h3><p class="compact">Agree a regular check-in, how to choose practice tasks and when to ask for review.</p><div class="task-list"><label class="task"><input type="checkbox" id="meet-adele-booked" data-save data-progress><span>Invited</span></label><label class="task"><input type="checkbox" id="meet-adele-met" data-save data-progress><span>Met</span></label></div><div class="field"><label for="meet-adele-note">One useful takeaway</label><textarea id="meet-adele-note" data-save></textarea></div></article>
+        <article class="card meeting"><div class="card-label">Suggested: Month 1</div><h3>An L1 support colleague</h3><p class="compact">Ask what makes a good handover to L2 and which details are often missing.</p><div class="task-list"><label class="task"><input type="checkbox" id="meet-l1-booked" data-save data-progress><span>Invited</span></label><label class="task"><input type="checkbox" id="meet-l1-met" data-save data-progress><span>Met</span></label></div><div class="field"><label for="meet-l1-note">Name and one takeaway</label><textarea id="meet-l1-note" data-save></textarea></div></article>
+        <article class="card meeting"><div class="card-label">Suggested: Months 2–3</div><h3>A CloudOps colleague</h3><p class="compact">Ask how environment and data issues reach them, and what to include when escalating.</p><div class="task-list"><label class="task"><input type="checkbox" id="meet-cloudops-booked" data-save data-progress><span>Invited</span></label><label class="task"><input type="checkbox" id="meet-cloudops-met" data-save data-progress><span>Met</span></label></div><div class="field"><label for="meet-cloudops-note">Name and one takeaway</label><textarea id="meet-cloudops-note" data-save></textarea></div></article>
+        <article class="card meeting"><div class="card-label">Suggested: Months 2–3</div><h3>A Product Manager</h3><p class="compact">Ask how a partner issue becomes a product decision and where roadmap questions belong.</p><div class="task-list"><label class="task"><input type="checkbox" id="meet-product-booked" data-save data-progress><span>Invited</span></label><label class="task"><input type="checkbox" id="meet-product-met" data-save data-progress><span>Met</span></label></div><div class="field"><label for="meet-product-note">Name and one takeaway</label><textarea id="meet-product-note" data-save></textarea></div></article>
+        <article class="card meeting"><div class="card-label">Suggested: Months 2–3</div><h3>An Engineering contact</h3><p class="compact">Ask how technical issues are routed and what evidence helps an engineer investigate.</p><div class="task-list"><label class="task"><input type="checkbox" id="meet-engineering-booked" data-save data-progress><span>Invited</span></label><label class="task"><input type="checkbox" id="meet-engineering-met" data-save data-progress><span>Met</span></label></div><div class="field"><label for="meet-engineering-note">Name and one takeaway</label><textarea id="meet-engineering-note" data-save></textarea></div></article>
+        <article class="card meeting"><div class="card-label">Suggested: Month 1</div><h3>Your apprenticeship coach</h3><p class="compact">Ask how your apprenticeship coaching and reviews will work.</p><div class="task-list"><label class="task"><input type="checkbox" id="meet-coach-booked" data-save data-progress><span>Invited</span></label><label class="task"><input type="checkbox" id="meet-coach-met" data-save data-progress><span>Met</span></label></div><div class="field"><label for="meet-coach-note">Name and one takeaway</label><textarea id="meet-coach-note" data-save></textarea></div></article>
       </div>
     </section>
 
-    <section class="section" id="practice">
+    <section class="section" id="independence">
       <div class="section-heading"><div class="eyebrow">A way to measure independence</div><h2>FROM WATCHING <span>TO OWNING</span></h2><p>Use this ladder for ticket triage, access requests and later documentation or partner tasks. Move up only when the task and access are appropriate; review still matters.</p></div>
-      <div class="ladder"><div class="rung"><strong>Watch</strong><p>See the task done. Ask what the person checked and why.</p></div><div class="rung"><strong>Do together</strong><p>Take a step with your buddy beside you. Write down the process.</p></div><div class="rung"><strong>Lead, then check</strong><p>Prepare the work yourself. Ask for review before any live change or external reply.</p></div><div class="rung"><strong>Own the loop</strong><p>Choose the right guide, complete a suitable task, check it, update people and log the learning.</p></div></div>
-      <div class="grid" style="margin-top:16px;"><div class="card"><div class="card-label">Habits to make routine</div><p class="compact">Tick each habit when you can show it on a suitable task.</p><div class="task-list"><label class="task"><input type="checkbox" id="independent-guide" data-save data-progress><span>I found the relevant Confluence guide or asked for the right one.</span></label><label class="task"><input type="checkbox" id="independent-safe" data-save data-progress><span>I checked the environment, data and permission level.</span></label><label class="task"><input type="checkbox" id="independent-review" data-save data-progress><span>I got the review or approval this task needs.</span></label><label class="task"><input type="checkbox" id="independent-close" data-save data-progress><span>I updated the requester and recorded the outcome in the right system.</span></label></div></div><div class="card"><div class="card-label">When to bring someone in</div><p>Ask your buddy or manager when the guide is unclear, the task touches live data or credentials, or you are unsure who owns the issue. In the workbook's routing guide: environment data issues go to CloudOps; feature timing or pricing goes to Product; broken systems go to Engineering through the proper ticket route.</p><p class="compact">Knowing when to ask is part of independent work.</p></div></div>
+      <div class="ladder"><div class="rung"><strong>Watch</strong><p>See the task done. Ask what the person checked and why.</p></div><div class="rung"><strong>Do together</strong><p>Take a step with your mentor (Adele) beside you. Write down the process.</p></div><div class="rung"><strong>Lead, then check</strong><p>Prepare the work yourself. Ask for review before any live change or external reply.</p></div><div class="rung"><strong>Own the loop</strong><p>Choose the right guide, complete a suitable task, check it, update people and log the learning.</p></div></div>
+      <div class="grid" style="margin-top:16px;"><div class="card"><div class="card-label">Habits to make routine</div><p class="compact">Tick each habit when you can show it on a suitable task.</p><div class="task-list"><label class="task"><input type="checkbox" id="independent-guide" data-save data-progress><span>I found the relevant Confluence guide or asked for the right one.</span></label><label class="task"><input type="checkbox" id="independent-safe" data-save data-progress><span>I checked the environment, data and permission level.</span></label><label class="task"><input type="checkbox" id="independent-review" data-save data-progress><span>I got the review or approval this task needs.</span></label><label class="task"><input type="checkbox" id="independent-close" data-save data-progress><span>I updated the requester and recorded the outcome in the right system.</span></label></div></div><div class="card"><div class="card-label">When to bring someone in</div><p>Ask your mentor (Adele) or manager when the guide is unclear, the task touches live data or credentials, or you are unsure who owns the issue. In the workbook's routing guide: environment data issues go to CloudOps; feature timing or pricing goes to Product; broken systems go to Engineering through the proper ticket route.</p><p class="compact">Knowing when to ask is part of independent work.</p></div></div>
     </section>
 
     <section class="section" id="reflection">
@@ -158,66 +185,247 @@
       var schema = 'lucas-passport-v1';
       var fields = Array.from(document.querySelectorAll('[data-save]'));
       var status = document.getElementById('save-status');
-      var timer;
+      var timer, legacyValues = {};
+      var practice = { flash:{seen:[],known:[],index:0,flipped:false}, status:{order:[],answers:{}}, safe:{}, routing:{}, reply:{}, json:{answers:{},checked:false}, triage:{selected:[],checked:false}, challenge:{picked:''}, completed:{}, scores:{} };
+      function node(id) { return document.getElementById(id); }
+      function clone(value) { return JSON.parse(JSON.stringify(value)); }
+      function shuffle(items) { var a=items.slice(); for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t;} return a; }
       function state() {
-        var values = {};
+        var values = Object.assign({}, legacyValues);
         fields.forEach(function (field) { values[field.id] = field.type === 'checkbox' ? field.checked : field.value; });
-        return { schema: schema, values: values, savedAt: new Date().toISOString() };
+        return { schema:schema, values:values, practice:clone(practice), savedAt:new Date().toISOString() };
       }
       function apply(data) {
         if (!data || data.schema !== schema || !data.values || typeof data.values !== 'object') throw new Error('This is not a Lucas passport backup.');
+        legacyValues = Object.assign({}, data.values);
         fields.forEach(function (field) {
           if (!Object.prototype.hasOwnProperty.call(data.values, field.id)) return;
           var value = data.values[field.id];
           if (field.type === 'checkbox' && typeof value === 'boolean') field.checked = value;
           if (field.type !== 'checkbox' && typeof value === 'string') field.value = value;
         });
+        if (data.practice && typeof data.practice === 'object') {
+          Object.keys(practice).forEach(function (part) {
+            if (data.practice[part] && typeof data.practice[part] === 'object') practice[part] = Object.assign(practice[part], data.practice[part]);
+          });
+        }
+        renderAll();
         progress();
       }
       function progress() {
         var checks = Array.from(document.querySelectorAll('input[data-progress]'));
         var done = checks.filter(function (box) { return box.checked; }).length;
-        var pct = checks.length ? Math.round(done / checks.length * 100) : 0;
-        var bar = document.getElementById('progress-fill');
+        var games = ['flash','status','safe','routing','reply','json','triage','challenge'];
+        done += games.filter(function (game) { return practice.completed[game] === true; }).length;
+        var total = checks.length + games.length;
+        var pct = total ? Math.round(done / total * 100) : 0;
+        var bar = node('progress-fill');
         bar.style.width = pct + '%';
         bar.setAttribute('aria-valuenow', String(pct));
-        document.getElementById('progress-text').textContent = done + ' of ' + checks.length + ' activities completed';
+        node('progress-text').textContent = done + ' of ' + total + ' activities completed';
       }
       function save() {
         try { localStorage.setItem(key, JSON.stringify(state())); status.textContent = 'saved in this browser'; }
-        catch (error) { status.textContent = 'save unavailable — export a copy'; }
+        catch (error) { status.textContent = 'save unavailable; export a copy'; }
       }
       function schedule() {
         progress();
-        status.textContent = 'saving…';
+        status.textContent = 'saving...';
         clearTimeout(timer);
         timer = setTimeout(save, 250);
       }
-      try { var previous = localStorage.getItem(key); if (previous) apply(JSON.parse(previous)); }
-      catch (error) { status.textContent = 'save unavailable — export a copy'; }
-      progress();
-      fields.forEach(function (field) { field.addEventListener('input', schedule); field.addEventListener('change', schedule); });
-      document.getElementById('export-button').addEventListener('click', function () {
-        clearTimeout(timer);
-        save();
-        var url = URL.createObjectURL(new Blob([JSON.stringify(state(), null, 2)], { type: 'application/json' }));
-        var link = document.createElement('a');
-        link.href = url; link.download = 'lucas-sage-passport.json';
-        document.body.appendChild(link); link.click(); link.remove();
-        setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+      function complete(name) { practice.completed[name] = true; schedule(); }
+      function button(label, onClick, pressed) {
+        var b=document.createElement('button'); b.type='button'; b.textContent=label;
+        if (pressed !== undefined) b.setAttribute('aria-pressed', String(pressed));
+        b.addEventListener('click',onClick); return b;
+      }
+      function addText(parent, tag, text, className) {
+        var el=document.createElement(tag); el.textContent=text; if(className) el.className=className; if(className==='feedback')el.setAttribute('role','status'); parent.appendChild(el); return el;
+      }
+      var terms=[
+        ['SBX','Sandbox: a safe test environment for practice.'],
+        ['INT','Integration environment. Check with mentor (Adele) how your team uses it.'],
+        ['PRD','Production: the live environment.'],
+        ['L1','First-line support: the first point of contact for many requests.'],
+        ['L2','Second-line support: deeper help for issues L1 cannot resolve.'],
+        ['SLA','Service level agreement: the agreed support targets.'],
+        ['ITP','Integration Test Plan: a plan for checking an integration.'],
+        ['SFCE','An internal abbreviation. Ask mentor (Adele) for its exact team meaning.'],
+        ['AFNOR','The French standards organisation.'],
+        ['e-invoicing','Sending and receiving invoices electronically in a structured form.'],
+        ['MCP','Model Context Protocol: a way for AI tools to connect to other tools and data.'],
+        ['PR','Pull request: a proposed code or document change for review.'],
+        ['MFA','Multi-factor authentication: an extra sign-in check.'],
+        ['API','Application programming interface: a way systems exchange requests and responses.'],
+        ['JSON','JavaScript Object Notation: a common format for structured data.'],
+        ['SSO','Single sign-on: signing in to connected apps through one account.']
+      ];
+      function renderFlash() {
+        var f=practice.flash;
+        if(!Array.isArray(f.seen))f.seen=[];
+        if(!Array.isArray(f.known))f.known=[];
+        var idx=Math.abs(Number(f.index)||0)%terms.length, term=terms[idx];
+        node('flash-count').textContent=f.known.length+' of '+terms.length+' cards known; '+f.seen.length+' reviewed.';
+        node('flash-card').textContent=f.flipped?'Show term':'Flip card';
+        node('flash-face').textContent=f.flipped?term[1]:term[0];
+        node('flash-again').disabled=false; node('flash-known').disabled=false;
+      }
+      node('flash-card').addEventListener('click',function(){practice.flash.flipped=!practice.flash.flipped;renderFlash();schedule();});
+      function answerFlash(known) {
+        var f=practice.flash, idx=Math.abs(Number(f.index)||0)%terms.length, term=terms[idx][0];
+        if(f.seen.indexOf(term)<0)f.seen.push(term);
+        f.known=f.known.filter(function(x){return x!==term;});
+        if(known)f.known.push(term);
+        f.index=(idx+1)%terms.length;f.flipped=false;
+        practice.scores.flash=f.known.length;
+        if(f.seen.length===terms.length)complete('flash'); else schedule();
+        renderFlash();
+      }
+      node('flash-again').addEventListener('click',function(){answerFlash(false);});
+      node('flash-known').addEventListener('click',function(){answerFlash(true);});
+      var statusItems=[
+        {code:'200',options:['OK','Created','Not found'],answer:'OK',why:'The request succeeded.'},
+        {code:'201',options:['Created','Too many requests','Forbidden'],answer:'Created',why:'A new resource was created.'},
+        {code:'400',options:['Bad request','Server error','OK'],answer:'Bad request',why:'The request has a problem, such as invalid input.'},
+        {code:'401',options:['Unauthorised','Forbidden','Not found'],answer:'Unauthorised',why:'Authentication is missing or has failed.'},
+        {code:'403',options:['Forbidden','Unauthorised','Created'],answer:'Forbidden',why:'The server understood the request but will not allow it.'},
+        {code:'404',options:['Not found','Bad request','Server error'],answer:'Not found',why:'The requested resource could not be found.'},
+        {code:'429',options:['Too many requests','Forbidden','OK'],answer:'Too many requests',why:'The caller has sent requests too quickly.'},
+        {code:'500',options:['Server error','Bad request','Created'],answer:'Server error',why:'Something went wrong on the server.'}
+      ];
+      function renderStatus() {
+        var box=node('status-game'), p=practice.status;box.replaceChildren();
+        if(!Array.isArray(p.order)||p.order.length!==statusItems.length)p.order=shuffle(statusItems.map(function(x){return x.code;}));
+        if(!p.answers||typeof p.answers!=='object')p.answers={};
+        var remaining=p.order.filter(function(code){return !Object.prototype.hasOwnProperty.call(p.answers,code);});
+        if(!remaining.length){
+          var score=statusItems.filter(function(q){return p.answers[q.code]===q.answer;}).length;
+          practice.scores.status=score;
+          addText(box,'p','Score: '+score+' of '+statusItems.length+'.', 'feedback');
+          box.appendChild(button('Try again',function(){p.order=shuffle(statusItems.map(function(x){return x.code;}));p.answers={};delete practice.scores.status;renderStatus();schedule();}));
+          return;
+        }
+        var code=remaining[0],q=statusItems.find(function(x){return x.code===code;});
+        addText(box,'p','Question '+(statusItems.length-remaining.length+1)+' of 8: What does HTTP '+code+' mean?');
+        var row=addText(box,'div','', 'choice-row');
+        q.options.forEach(function(choice){row.appendChild(button(choice,function(){
+          p.answers[code]=choice;if(Object.keys(p.answers).length===statusItems.length){practice.scores.status=statusItems.filter(function(x){return p.answers[x.code]===x.answer;}).length;complete('status');}
+          renderStatusFeedback(box,q,choice,renderStatus);schedule();
+        }));});
+      }
+      function renderStatusFeedback(box,q,choice,next) {
+        box.replaceChildren();
+        addText(box,'p','HTTP '+q.code+': '+(choice===q.answer?'Correct.':'Try again later.'));addText(box,'p',q.why,'feedback');
+        box.appendChild(button('Next question',next));
+      }
+      var safeItems=[
+        ['A made-up JSON sample',true,'Fictional data made for practice is fine in an approved tool.'],
+        ['A partner API key',false,'Never paste credentials or keys into an AI tool.'],
+        ['A ticket screenshot with a customer name',false,'It contains customer information.'],
+        ['A public W3Schools page',true,'Public learning material is safe to discuss.'],
+        ['A synthetic error message you wrote',true,'It contains no real account or customer data.'],
+        ['A live invoice',false,'It contains business or personal information.'],
+        ['A generic question about HTTP 404',true,'A general technical question is safe.'],
+        ["A colleague's private HR note",false,'Private colleague information must stay in approved systems.']
+      ];
+      function renderSafe() {
+        var box=node('safe-game');box.replaceChildren(); if(!practice.safe||typeof practice.safe!=='object')practice.safe={};
+        safeItems.forEach(function(item,i){
+          var ex=addText(box,'div','', 'exercise');addText(ex,'p',(i+1)+'. '+item[0]);
+          var row=addText(ex,'div','', 'choice-row');
+          ['Safe','Not safe'].forEach(function(label){row.appendChild(button(label,function(){practice.safe[i]=label==='Safe';renderSafe();if(Object.keys(practice.safe).length===safeItems.length){practice.scores.safe=safeItems.filter(function(x,j){return practice.safe[j]===x[1];}).length;complete('safe');}else schedule();},practice.safe[i]=== (label==='Safe')));});
+          if(Object.prototype.hasOwnProperty.call(practice.safe,i))addText(ex,'p',(practice.safe[i]===item[1]?'Correct. ':'Review this one. ')+item[2],'feedback');
+        });
+        addText(box,'p',Object.keys(practice.safe).length+' of 8 sorted.','compact');
+      }
+      var routes=[
+        ['A simple request needs first-line help.','L1','L1 is a common first stop for basic support. Check the local route with mentor (Adele).'],
+        ['A support case needs deeper investigation after first-line checks.','L2','L2 can investigate beyond the first line. Check the handover route with mentor (Adele).'],
+        ['A test environment appears unavailable.','CloudOps','CloudOps may help with environment issues. Confirm the route with mentor (Adele).'],
+        ['A question asks whether a feature is planned.','Product','Product owns product decisions. Check the right contact with mentor (Adele).'],
+        ['A reproducible technical defect needs investigation.','Engineering','Engineering may investigate defects through the proper ticket route. Check with mentor (Adele).'],
+        ['You need help choosing a safe learning task.','Adele','Your mentor (Adele) can help you choose and review it.']
+      ];
+      var routeChoices=['L1','L2','CloudOps','Product','Engineering','Adele','Lee','ServiceNow'];
+      function renderRouting(){
+        var box=node('routing-game');box.replaceChildren();if(!practice.routing||typeof practice.routing!=='object')practice.routing={};
+        routes.forEach(function(item,i){
+          var ex=addText(box,'div','', 'exercise');addText(ex,'p',(i+1)+'. '+item[0]);
+          var select=document.createElement('select');select.setAttribute('aria-label','First stop for scenario '+(i+1));
+          var prompt=document.createElement('option');prompt.value='';prompt.textContent='Choose a first stop';select.appendChild(prompt);
+          routeChoices.forEach(function(choice){var opt=document.createElement('option');opt.value=choice;opt.textContent=choice;select.appendChild(opt);});
+          select.value=practice.routing[i]||'';select.addEventListener('change',function(){practice.routing[i]=select.value;renderRouting();if(Object.keys(practice.routing).filter(function(k){return practice.routing[k];}).length===routes.length){practice.scores.routing=routes.filter(function(x,j){return practice.routing[j]===x[1];}).length;complete('routing');}else schedule();var next=box.querySelectorAll('select')[i+1];if(next)next.focus();});ex.appendChild(select);
+          if(practice.routing[i])addText(ex,'p',(practice.routing[i]===item[1]?'Good first stop. ':'Check this route. ')+item[2],'feedback');
+        });
+      }
+      var replies=[
+        {mail:'“I asked for an update yesterday. Has anyone looked at this?”',options:['Please wait. We are busy.','Thanks for following up. I will check the current status and update you through the normal support channel.','This is another team’s problem.'],best:1,why:'It owns the follow-up and gives a clear next step.'},
+        {mail:'“The test request failed again. I do not understand the error.”',options:['You must have done it wrong.','It works for us.','I can help investigate. Please share the safe error details through the approved support route and I will check the next step.'],best:2,why:'It offers help without blame and asks for useful details safely.'},
+        {mail:'“I have explained this twice. Can someone help?”',options:['I am sorry you have had to repeat this. I will review what is already recorded and confirm the next step.','Send all the details again.','Ask someone else.'],best:0,why:'It acknowledges frustration, avoids repeat work and commits to a next step.'}
+      ];
+      function renderReply(){
+        var box=node('reply-game');box.replaceChildren();if(!practice.reply||typeof practice.reply!=='object')practice.reply={};
+        replies.forEach(function(q,i){
+          var ex=addText(box,'div','', 'exercise');addText(ex,'p','Fictional partner '+(i+1)+': '+q.mail);
+          var row=addText(ex,'div','', 'choice-row');
+          q.options.forEach(function(choice,j){row.appendChild(button(choice,function(){practice.reply[i]=j;renderReply();if(Object.keys(practice.reply).length===replies.length){practice.scores.reply=replies.filter(function(x,k){return practice.reply[k]===x.best;}).length;complete('reply');}else schedule();},practice.reply[i]===j));});
+          if(Object.prototype.hasOwnProperty.call(practice.reply,i))addText(ex,'p',(practice.reply[i]===q.best?'Good choice. ':'Try another style next time. ')+q.why,'feedback');
+        });
+      }
+      var sample={environment:'SBX',feed:{status:'ready',currency:'GBP',transactions:[{amount:12},{amount:8}]}};
+      node('json-sample').textContent=JSON.stringify(sample,null,2);
+      var jsonQuestions=[['What is the status?','ready'],['How many transactions are there?','2'],['Which environment is this?','SBX'],['What is the currency?','GBP']];
+      function renderJson(){
+        var box=node('json-game');box.replaceChildren();var p=practice.json;if(!p.answers||typeof p.answers!=='object')p.answers={};
+        jsonQuestions.forEach(function(q,i){
+          var wrap=addText(box,'div','', 'field');var label=addText(wrap,'label',q[0]);label.htmlFor='json-answer-'+i;
+          var input=document.createElement('input');input.type='text';input.id='json-answer-'+i;input.value=p.answers[i]||'';
+          input.addEventListener('input',function(){p.answers[i]=input.value;schedule();});wrap.appendChild(input);
+          if(p.checked)addText(wrap,'p',(String(p.answers[i]||'').trim().toLowerCase()===q[1].toLowerCase()?'Correct.':'Check the JSON and try again.'),'feedback');
+        });
+        box.appendChild(button('Check my answers',function(){p.checked=true;renderJson();if(jsonQuestions.every(function(q,i){return String(p.answers[i]||'').trim();}))complete('json');else schedule();}));
+        if(p.checked){var score=jsonQuestions.filter(function(q,i){return String(p.answers[i]||'').trim().toLowerCase()===q[1].toLowerCase();}).length;practice.scores.json=score;addText(box,'p','Score: '+score+' of 4.','feedback');}
+      }
+      var triageDetails=['Environment','Partner ID','Timestamps','Steps to reproduce','Error message','Screenshot'];
+      var triageMissing=['Partner ID','Steps to reproduce','Error message','Screenshot'];
+      function renderTriage(){
+        var box=node('triage-game');box.replaceChildren();var p=practice.triage;if(!Array.isArray(p.selected))p.selected=[];
+        triageDetails.forEach(function(item){
+          var label=addText(box,'label','', 'task');var check=document.createElement('input');check.type='checkbox';check.checked=p.selected.indexOf(item)>=0;
+          check.addEventListener('change',function(){p.selected=check.checked?p.selected.concat(item):p.selected.filter(function(x){return x!==item;});schedule();});label.appendChild(check);addText(label,'span',item);
+        });
+        box.appendChild(button('Check missing details',function(){p.checked=true;renderTriage();complete('triage');}));
+        if(p.checked){var good=triageDetails.filter(function(x){return (p.selected.indexOf(x)>=0)===(triageMissing.indexOf(x)>=0);}).length;practice.scores.triage=good;addText(box,'p','Score: '+good+' of 6. The ticket already gives SBX and a time. Ask for a partner ID, steps to reproduce, the error message and a safe screenshot through the approved support route.','feedback');}
+      }
+      node('challenge-button').addEventListener('click',function(){
+        var remaining=fields.filter(function(x){return x.id.indexOf('learn-')===0&&x.type==='checkbox'&&!x.checked;}).map(function(x){return {label:x.parentElement.innerText.split('\n')[0],target:x.id};});
+        [['flash','Glossary flashcards'],['status','Status code quiz'],['safe','Safe to paste into AI?'],['routing','Who do I go to?'],['reply','Better reply'],['json','Find the value'],['triage','Ticket triage check']].forEach(function(x){if(!practice.completed[x[0]])remaining.push({label:x[1],target:x[0]});});
+        var picked=remaining.length?remaining[Math.floor(Math.random()*remaining.length)]:{label:'You have completed every listed activity. Choose one to revisit.',target:''};
+        practice.challenge.picked=picked.label;
+        node('challenge-result').textContent='Try: '+picked.label;
+        complete('challenge');
       });
-      document.getElementById('import-file').addEventListener('change', function (event) {
-        var file = event.target.files[0];
-        if (!file) return;
-        if (file.size > 1000000) { alert('That backup is too large.'); event.target.value = ''; return; }
-        var reader = new FileReader();
-        reader.onload = function () {
-          try {
-            var data = JSON.parse(reader.result);
-            if (!data || data.schema !== schema || !data.values) throw new Error('Wrong backup');
-            if (confirm('Replace the answers saved in this browser with this backup?')) { apply(data); save(); }
-          } catch (error) { alert('This file is not a Lucas passport backup.'); }
-          event.target.value = '';
+      function renderAll(){renderFlash();renderStatus();renderSafe();renderRouting();renderReply();renderJson();renderTriage();node('challenge-result').textContent=practice.challenge.picked?'Try: '+practice.challenge.picked:'';}
+      try { var previous=localStorage.getItem(key); if(previous)apply(JSON.parse(previous)); else renderAll(); }
+      catch(error){status.textContent='save unavailable; export a copy';renderAll();}
+      progress();
+      fields.forEach(function(field){field.addEventListener('input',schedule);field.addEventListener('change',schedule);});
+      node('export-button').addEventListener('click',function(){
+        clearTimeout(timer);save();
+        var url=URL.createObjectURL(new Blob([JSON.stringify(state(),null,2)],{type:'application/json'}));
+        var link=document.createElement('a');link.href=url;link.download='lucas-sage-passport.json';
+        document.body.appendChild(link);link.click();link.remove();setTimeout(function(){URL.revokeObjectURL(url);},1000);
+      });
+      node('import-file').addEventListener('change',function(event){
+        var file=event.target.files[0];if(!file)return;
+        if(file.size>1000000){alert('That backup is too large.');event.target.value='';return;}
+        var reader=new FileReader();
+        reader.onload=function(){
+          try{var data=JSON.parse(reader.result);if(!data||data.schema!==schema||!data.values)throw new Error('Wrong backup');
+            if(confirm('Replace the answers saved in this browser with this backup?')){apply(data);save();}
+          }catch(error){alert('This file is not a Lucas passport backup.');}
+          event.target.value='';
         };
         reader.readAsText(file);
       });
